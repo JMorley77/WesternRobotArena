@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SCENES/Game/MainMenu.unity
     guid: 84d14c14905afd84f997bbc3c2f2e4fc
+  - enabled: 1
+    path: Assets/SCENES/Development/James M Test.unity
+    guid: f411945991271c94bab359dcbb4e10e2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

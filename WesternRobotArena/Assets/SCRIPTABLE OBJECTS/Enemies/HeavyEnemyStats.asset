@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61b9530fe1ae8454ba37198042fe038f, type: 3}
+  m_Name: HeavyEnemyStats
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
+  AIName: Heavy
+  prefab: {fileID: 6188442792819705576, guid: c1ec2e9b91931af4ba6622b814d2346d, type: 3}
+  maxHealth: 100
+  moveSpeed: 5
+  attackDamage: 2
+  attackRange: 2
+  attackCooldown: 1
+  rewardValue: 2
+  spawnRate: 20
+  numEnemiesPerWave: 10
