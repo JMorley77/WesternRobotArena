@@ -1,9 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
 using System.Collections.Generic;
-using System;
 using Random = UnityEngine.Random;
-using System.Linq;
 
 public class EnemySpawner : NetworkBehaviour
 {
@@ -39,7 +37,7 @@ public class EnemySpawner : NetworkBehaviour
 
     public void SpawnWave(EnemyStats enemy)
     {
-        if (NetworkManager.Singleton.ConnectedClientsIds.Count < 1)
+        if (NetworkManager.Singleton.ConnectedClientsIds.Count < 1) // change this to number of players connected
             return;
 
         foreach (ulong playerId in  NetworkManager.Singleton.ConnectedClientsIds)
@@ -62,7 +60,7 @@ public class EnemySpawner : NetworkBehaviour
 
             EnemyController enemyController = enemyObject.GetComponent<EnemyController>();
 
-            //enemyController.SetTarget(targetPlayerId);
+            enemyController.SetTarget(targetPlayerId);
         }
     }
 }
