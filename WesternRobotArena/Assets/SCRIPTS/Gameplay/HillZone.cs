@@ -13,4 +13,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         
     }
+
+    void OnTriggerStay()
+    {
+        
+    }
+
 }
