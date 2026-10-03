@@ -19,11 +19,13 @@ public class EnemyController : NetworkBehaviour
     private NavMeshAgent agent;
     private ulong targetPlayerId;
     private Transform target;
+    private EnemyCombat enemyCombat;
 
     private EnemyState currentState= EnemyState.Idle;
 
     private void Awake()
     {
+        enemyCombat = GetComponent<EnemyCombat>();
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -37,6 +39,8 @@ public class EnemyController : NetworkBehaviour
 
         agent.speed = enemyStats.moveSpeed;
         agent.stoppingDistance = enemyStats.attackRange;
+
+        enemyCombat.Initialise(enemyStats);
     }
 
     private void Update()
@@ -59,6 +63,7 @@ public class EnemyController : NetworkBehaviour
         {
             StopMoving();
             currentState = EnemyState.Attacking;
+            UpdateAttacking();
         }
         else
         {
@@ -103,6 +108,21 @@ public class EnemyController : NetworkBehaviour
         agent.ResetPath();
     }
 
+    public void UpdateAttacking()
+    {
+        if(target == null)
+            return;
+
+        float distance = Vector3.Distance(transform.position, target.position);
+
+        if(distance > enemyStats.attackRange)
+        {
+            currentState = EnemyState.Chasing;
+            return;
+        }
+
+        enemyCombat.TryAttack(target);
+    }
     public void Die()
     {
         if(!IsServer)
