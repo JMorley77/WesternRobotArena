@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Player 1
+  - TeamRed
+  - TeamBlue
   layers:
   - Default
   - TransparentFX
