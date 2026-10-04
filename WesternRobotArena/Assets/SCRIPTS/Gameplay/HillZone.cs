@@ -3,9 +3,15 @@ using UnityEngine;
 
 public class HillZone : MonoBehaviour
 {
+    [SerializeField] private ScoreManager scoreManager;
+    
     // A HashSet to keep track of which players are currently in the objective area
     HashSet<string> playersInZone = new HashSet<string>();
 
+    void Update()
+    {
+        AreaCheck();
+    }
     // When the players enter the objective area
     void OnTriggerEnter(Collider other)
     {
@@ -46,6 +52,16 @@ public class HillZone : MonoBehaviour
         if (playersInZone.Contains("TeamRed") && playersInZone.Contains("TeamBlue"))
         {
             Debug.Log("Both teams are contesting the hill!");
+        }
+        else if (playersInZone.Contains("TeamRed") && !playersInZone.Contains("TeamBlue"))
+        {
+            Debug.Log("Team Red is controlling the hill!");
+            scoreManager.RedPointIncrease();
+        }
+        else if (playersInZone.Contains("TeamBlue") && !playersInZone.Contains("TeamRed"))
+        {
+            Debug.Log("Team Blue is controlling the hill!");
+            scoreManager.BluePointIncrease();
         }
     }
 }
