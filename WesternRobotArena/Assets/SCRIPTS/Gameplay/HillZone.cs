@@ -8,10 +8,19 @@ public class HillZone : MonoBehaviour
     // A HashSet to keep track of which players are currently in the objective area
     HashSet<string> playersInZone = new HashSet<string>();
 
+    private float scoreTimer = 0f;
+
     void Update()
     {
-        AreaCheck();
+        scoreTimer += Time.deltaTime;
+
+        if (scoreTimer >= 1f)
+        {
+            scoreTimer = 0f;
+            AreaCheck();
+        }
     }
+
     // When the players enter the objective area
     void OnTriggerEnter(Collider other)
     {
