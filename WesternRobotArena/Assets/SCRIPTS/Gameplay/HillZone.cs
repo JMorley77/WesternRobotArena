@@ -6,7 +6,8 @@ public class HillZone : MonoBehaviour
     [SerializeField] private ScoreManager scoreManager;
     
     // A HashSet to keep track of which players are currently in the objective area
-    HashSet<string> playersInZone = new HashSet<string>();
+    HashSet<Collider> redPlayersInZone = new HashSet<Collider>();
+    HashSet<Collider> bluePlayersInZone = new HashSet<Collider>();
 
     private float scoreTimer = 0f;
 
@@ -27,12 +28,12 @@ public class HillZone : MonoBehaviour
         if (other.gameObject.CompareTag("TeamRed"))
         {
             Debug.Log("Team Red is in the hill zone");
-            playersInZone.Add("TeamRed");
+            redPlayersInZone.Add(other);
         }
         else if (other.gameObject.CompareTag("TeamBlue"))
         {
             Debug.Log("Team Blue is in the hill zone");
-            playersInZone.Add("TeamBlue");
+            bluePlayersInZone.Add(other);
         }
 
         AreaCheck();
@@ -44,12 +45,12 @@ public class HillZone : MonoBehaviour
         if (other.gameObject.CompareTag("TeamRed"))
         {
             Debug.Log("Team Red has exited the hill zone");
-            playersInZone.Remove("TeamRed");
+            redPlayersInZone.Remove(other);
         }
         else if (other.gameObject.CompareTag("TeamBlue"))
         {
             Debug.Log("Team Blue has exited the hill zone");
-            playersInZone.Remove("TeamBlue");
+            bluePlayersInZone.Remove(other);
         }
 
         AreaCheck();
@@ -58,16 +59,19 @@ public class HillZone : MonoBehaviour
     // Check if both teams are in the objective area
     void AreaCheck()
     {
-        if (playersInZone.Contains("TeamRed") && playersInZone.Contains("TeamBlue"))
+        bool redTeam = redPlayersInZone.Count > 0;
+        bool blueTeam = bluePlayersInZone.Count > 0;
+        
+        if (redTeam && blueTeam)
         {
             Debug.Log("Both teams are contesting the hill!");
         }
-        else if (playersInZone.Contains("TeamRed") && !playersInZone.Contains("TeamBlue"))
+        else if (redTeam)
         {
             Debug.Log("Team Red is controlling the hill!");
             scoreManager.RedPointIncrease();
         }
-        else if (playersInZone.Contains("TeamBlue") && !playersInZone.Contains("TeamRed"))
+        else if (blueTeam)
         {
             Debug.Log("Team Blue is controlling the hill!");
             scoreManager.BluePointIncrease();
