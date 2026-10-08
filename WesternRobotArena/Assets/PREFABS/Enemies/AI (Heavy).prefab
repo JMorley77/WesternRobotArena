@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8168843199105048910}
   - component: {fileID: 4872207387803158628}
   - component: {fileID: -8791871595564009546}
+  - component: {fileID: -6004559464491732410}
   m_Layer: 0
   m_Name: AI (Heavy)
   m_TagString: Untagged
@@ -268,3 +269,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c72603d2b78e99740bdd6925e828a508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCombat
+--- !u!114 &-6004559464491732410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7614365539049271289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d9658d6ef793944bed2da6cecd42df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  ShowTopMostFoldoutHeaderGroup: 1
+  enemyStats: {fileID: 11400000, guid: 7cf62849e43a24c4e95fdd5594255794, type: 2}
+  CurrentHealth:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
