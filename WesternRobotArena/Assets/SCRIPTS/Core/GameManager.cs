@@ -1,5 +1,7 @@
 using Unity.Netcode;
+using UnityEditor.Build.Content;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : NetworkBehaviour
 {
@@ -14,11 +16,13 @@ public class GameManager : NetworkBehaviour
     [Header("Game Settings")]
     [SerializeField] private int requiredPlayers = 2;
     [SerializeField] private float gameDuration = 480; // 8 minutes
+    [SerializeField] private string mainGameScene = "Main";
 
     public NetworkVariable<GameState> State = new NetworkVariable<GameState>(GameState.WaitingForPlayers);
 
     public NetworkVariable<float> TimeRemaining = new NetworkVariable<float>(0f);
 
+    private bool sceneLoading;
     public override void OnNetworkSpawn()
     {
         if (!IsServer)
@@ -53,10 +57,20 @@ public class GameManager : NetworkBehaviour
 
     private void StartMatch()
     {
+        if (sceneLoading) return;
+
+        sceneLoading = true;
         State.Value = GameState.InGame;
         TimeRemaining.Value = gameDuration;
-        Debug.Log("Match Started");
+
+        Debug.Log("Players connected. Loading game scene.");
+
+        NetworkManager.Singleton.SceneManager.LoadScene(
+            mainGameScene,
+            LoadSceneMode.Single
+        );
     }
+
 
     private void EndMatch()
     {

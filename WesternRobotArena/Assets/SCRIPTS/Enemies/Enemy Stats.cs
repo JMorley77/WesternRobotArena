@@ -21,5 +21,6 @@ public class EnemyStats : ScriptableObject
     [Header("Spawning")]
     [Tooltip("Time in seconds between each wave of enemies")]
     public float spawnRate;
+    [Tooltip("Number of enemies to spawn per wave per client")]
     public int numEnemiesPerWave;
 }
