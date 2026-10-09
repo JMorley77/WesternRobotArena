@@ -37,7 +37,7 @@ public class EnemySpawner : NetworkBehaviour
 
     public void SpawnWave(EnemyStats enemy)
     {
-        if (NetworkManager.Singleton.ConnectedClientsIds.Count < 1) // change this to number of players connected
+        if (NetworkManager.Singleton.ConnectedClientsIds.Count < 2) // change this to number of players connected
             return;
 
         foreach (ulong playerId in  NetworkManager.Singleton.ConnectedClientsIds)
