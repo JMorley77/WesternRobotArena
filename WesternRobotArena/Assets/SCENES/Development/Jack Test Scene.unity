@@ -270,6 +270,7 @@ MonoBehaviour:
   blueScoreText: {fileID: 956880138}
   timerText: {fileID: 1334208771}
   remainingTime: 480
+  maxPoints: 10
 --- !u!114 &630977838
 MonoBehaviour:
   m_ObjectHideFlags: 0
