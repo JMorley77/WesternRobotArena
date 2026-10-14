@@ -15,6 +15,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI timerText;
     // 480 seconds = 8 minutes
     [SerializeField] float remainingTime;
+    [SerializeField] float maxPoints;
 
     #region Point System
     public void RedPointIncrease()
@@ -33,20 +34,20 @@ public class ScoreManager : MonoBehaviour
 
     void EndGame()
     {
-        if (remainingTime <= 0 && teamRedPoints >= teamBluePoints)
+        if (teamRedPoints == teamBluePoints)
+        {
+            Debug.Log("It's a tie!");
+            // Add Draw Screen
+        }
+        else if (teamRedPoints >= teamBluePoints)
         {
             Debug.Log("Team Red wins!");
             // Add Red Win Screen
         }
-        else if (remainingTime <= 0 && teamBluePoints >= teamRedPoints)
+        else
         {
             Debug.Log("Team Blue wins!");
             // Add Blue Win Screen
-        }
-        else if (remainingTime <= 0 && teamRedPoints == teamBluePoints)
-        {
-            Debug.Log("It's a tie!");
-            // Add Draw Screen
         }
     }
 
@@ -59,15 +60,15 @@ public class ScoreManager : MonoBehaviour
         {
             remainingTime -= Time.deltaTime;
         }
-        else if (remainingTime <= 0)
-        {
-            remainingTime = 0;
-            EndGame();
-        }
 
         int minutes = Mathf.FloorToInt(remainingTime / 60);
         int seconds = Mathf.FloorToInt(remainingTime % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+        if (remainingTime <= 0 || teamRedPoints >= maxPoints || teamBluePoints >= maxPoints)
+        {
+            EndGame();
+        }
     }
     #endregion
 }
