@@ -970,12 +970,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92c65521f3690a4e806460f1e26ef03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
+  gameManager: {fileID: 1785781288}
   teamRedPoints: 0
   teamBluePoints: 0
   redScoreText: {fileID: 2015022946}
   blueScoreText: {fileID: 197201284}
   timerText: {fileID: 419133505}
-  remainingTime: 480
   maxPoints: 800
 --- !u!114 &2015022946 stripped
 MonoBehaviour:

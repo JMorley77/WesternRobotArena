@@ -5,6 +5,7 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
+    public GameManager gameManager;
     // Points for each team
     [SerializeField] private int teamRedPoints = 0;
     [SerializeField] private int teamBluePoints = 0;
@@ -13,9 +14,14 @@ public class ScoreManager : MonoBehaviour
 
     // Game timer
     [SerializeField] TextMeshProUGUI timerText;
-    // 480 seconds = 8 minutes
-    [SerializeField] float remainingTime;
     [SerializeField] float maxPoints;
+    private float remainingTime;
+
+    public void Start()
+    {
+        remainingTime = gameManager.TimeRemaining.Value;
+    }
+
 
     #region Point System
     public void RedPointIncrease()
@@ -54,7 +60,7 @@ public class ScoreManager : MonoBehaviour
     #endregion
 
     #region Game Timer
-    void Update()
+    public void Update()
     {
         if (remainingTime > 0)
         {
