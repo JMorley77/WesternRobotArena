@@ -60,20 +60,30 @@ public class ScoreManager : MonoBehaviour
     #endregion
 
     #region Game Timer
-    public void Update()
+    private void Update()
     {
-        if (remainingTime > 0)
-        {
-            remainingTime -= Time.deltaTime;
-        }
+        if (gameManager == null || timerText == null)
+            return;
+
+        float remainingTime = gameManager.TimeRemaining.Value;
 
         int minutes = Mathf.FloorToInt(remainingTime / 60);
         int seconds = Mathf.FloorToInt(remainingTime % 60);
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
-        if (remainingTime <= 0 || teamRedPoints >= maxPoints || teamBluePoints >= maxPoints)
+        timerText.text = string.Format(
+            "{0:00}:{1:00}",
+            minutes,
+            seconds
+        );
+
+        if (gameManager.State.Value == GameManager.GameState.InGame)
         {
-            EndGame();
+            if (remainingTime <= 0 ||
+                teamRedPoints >= maxPoints ||
+                teamBluePoints >= maxPoints)
+            {
+                EndGame();
+            }
         }
     }
     #endregion

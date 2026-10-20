@@ -5,25 +5,34 @@ public class GameManager : NetworkBehaviour
     public enum GameState
     {
         WaitingForPlayers,
+        Starting,
         InGame,
         Finished
     }
 
     [Header("Game Settings")]
     [SerializeField] private float gameDuration = 480f; // 8 minutes
+    [SerializeField] private float startCountdownDuration = 5f; // 5 seconds
+    [SerializeField] private int requiredPlayers = 2;
 
     [Header("Player Settings")]
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform[] spawnPoints;
 
+    private int nextSpawnIndex = 0;
+
+    #region Network Variables
     public NetworkVariable<GameState> State =
         new NetworkVariable<GameState>(GameState.WaitingForPlayers);
 
     public NetworkVariable<float> TimeRemaining =
         new NetworkVariable<float>(0f);
 
-    private int nextSpawnIndex = 0;
+    public NetworkVariable<float> StartTimeRemaining =
+        new NetworkVariable<float>(0f);
+    #endregion
 
+    #region Initial Spawning
     public override void OnNetworkSpawn()
     {
         if (!IsServer)
@@ -36,11 +45,18 @@ public class GameManager : NetworkBehaviour
             SpawnPlayer(clientId);
         }
 
-        State.Value = GameState.InGame;
-        TimeRemaining.Value = gameDuration;
 
-        Debug.Log("Match started!");
+        State.Value = GameState.WaitingForPlayers;
+
+
+        TimeRemaining.Value = gameDuration;
+        StartTimeRemaining.Value = startCountdownDuration;
+
+        Debug.Log("Waiting for both players...");
+
+        CheckPlayers();
     }
+    
 
     private void OnClientConnected(ulong clientId)
     {
@@ -48,8 +64,32 @@ public class GameManager : NetworkBehaviour
             return;
 
         SpawnPlayer(clientId);
+        CheckPlayers();
     }
+    #endregion
 
+    #region Checking Players
+    private void CheckPlayers()
+    {
+        if (!IsServer)
+            return;
+
+        if (State.Value != GameState.WaitingForPlayers)
+            return;
+
+        Debug.Log($"Connected players: {NetworkManager.ConnectedClientsIds.Count}/{requiredPlayers}");
+
+        if (NetworkManager.ConnectedClientsIds.Count >= requiredPlayers)
+        {
+            State.Value = GameState.Starting;
+            StartTimeRemaining.Value = startCountdownDuration;
+
+            Debug.Log("Host and client connected! Starting countdown!");
+        }
+    }
+    #endregion
+    
+    #region Spawning Players
     private void SpawnPlayer(ulong clientId)
     {
         if (NetworkManager.ConnectedClients[clientId].PlayerObject != null)
@@ -75,25 +115,40 @@ public class GameManager : NetworkBehaviour
         Debug.Log($"Client {clientId} spawned at {spawnPoint.position}");
     }
 
+    #endregion
 
+    #region Game Loop
     private void Update()
     {
         if (!IsServer)
             return;
 
-        if (State.Value != GameState.InGame)
-            return;
-
-        TimeRemaining.Value = Mathf.Max(
-            0f,
-            TimeRemaining.Value - Time.deltaTime
-        );
-
-        if (TimeRemaining.Value <= 0f)
+        // Starting countdown
+        if (State.Value == GameState.Starting)
         {
-            EndMatch();
+            StartTimeRemaining.Value = Mathf.Max(0f,StartTimeRemaining.Value - Time.deltaTime
+            );
+
+            if (StartTimeRemaining.Value <= 0f)
+            {
+                State.Value = GameState.InGame;
+
+                Debug.Log("Match started!");
+            }
+        }
+        // Main game timer
+        else if (State.Value == GameState.InGame)
+        {
+            TimeRemaining.Value = Mathf.Max(0f,TimeRemaining.Value - Time.deltaTime
+            );
+
+            if (TimeRemaining.Value <= 0f)
+            {
+                EndMatch();
+            }
         }
     }
+
 
     private void EndMatch()
     {
@@ -104,4 +159,15 @@ public class GameManager : NetworkBehaviour
 
         Debug.Log("Match ended!");
     }
+    #endregion
+
+    #region Despawning
+    public override void OnNetworkDespawn()
+    {
+        if (IsServer && NetworkManager != null)
+        {
+            NetworkManager.OnClientConnectedCallback -= OnClientConnected;
+        }
+    }
+    #endregion
 }
