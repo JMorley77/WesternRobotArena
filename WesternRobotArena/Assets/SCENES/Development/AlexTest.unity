@@ -152,6 +152,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 844303867}
   - {fileID: 1557056498}
+  arenaCamera: {fileID: 602148077}
 --- !u!114 &118515820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +365,7 @@ GameObject:
   - component: {fileID: 602148074}
   - component: {fileID: 602148073}
   - component: {fileID: 602148076}
+  - component: {fileID: 602148077}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -438,13 +440,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602148072}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.41334283, y: 0, z: 0, w: 0.9105755}
-  m_LocalPosition: {x: 0, y: 9.05, z: -10}
+  m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 48.83, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
 --- !u!114 &602148076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +491,22 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &602148077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602148072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baf87dc34a3c5ab4e83cc8f154074aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ArenaCamera
+  cameraDistance: 20
+  minZoom: 6
+  screenPadding: 6
+  smoothTime: 0.2
 --- !u!1 &844303866
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,8 +677,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
