@@ -1,4 +1,7 @@
 {
-  "PlayerTags": [],
+  "PlayerTags": [
+    "TeamRed",
+    "TeamBlue"
+  ],
   "version": "6000.3.17f1"
 }
