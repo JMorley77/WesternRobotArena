@@ -31,8 +31,7 @@ public class LobbyManager : NetworkBehaviour
 
         if (playerListText != null)
         {
-            playerListText.text =
-                $"Players connected: {connectedPlayers}/{requiredPlayers}";
+            playerListText.text = $"Players connected: {connectedPlayers}/{requiredPlayers}";
         }
 
         if (!nm.IsServer)
@@ -48,9 +47,6 @@ public class LobbyManager : NetworkBehaviour
 
         Debug.Log("Required players connected. Loading Main scene.");
 
-        var status = nm.SceneManager.LoadScene(
-            mainGameScene,
-            LoadSceneMode.Single
-        );
+        var status = nm.SceneManager.LoadScene(mainGameScene,LoadSceneMode.Single);
     }
 }
