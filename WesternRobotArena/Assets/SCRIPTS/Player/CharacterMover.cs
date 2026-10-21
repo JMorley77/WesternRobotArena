@@ -5,7 +5,7 @@ public class CharacterMover : MonoBehaviour
     private InputHandler input;
 
     [SerializeField]
-    private float moveSpeed;
+    public float moveSpeed;
 
     [SerializeField]
     private float rotateSpeed; // degrees per second

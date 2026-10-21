@@ -27,14 +27,14 @@ public class ScoreManager : MonoBehaviour
     public void RedPointIncrease()
     {
         teamRedPoints++;
-        redScoreText.text = teamRedPoints.ToString();
+        redScoreText.text = "RED: " + teamRedPoints.ToString();
         Debug.Log("Team Red scored! Current score: " + teamRedPoints);
     }
 
     public void BluePointIncrease()
     {
         teamBluePoints++;
-        blueScoreText.text = teamBluePoints.ToString();
+        blueScoreText.text = "BLUE: " + teamBluePoints.ToString();
         Debug.Log("Team Blue scored! Current score: " + teamBluePoints);
     }
 

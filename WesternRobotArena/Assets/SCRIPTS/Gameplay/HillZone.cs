@@ -78,3 +78,62 @@ public class HillZone : MonoBehaviour
         }
     }
 }
+
+
+/*using UnityEngine;
+using UnityEngine.InputSystem;
+using System.Collections;
+
+public class Collect : MonoBehaviour
+{
+    private GameObject powerUp;
+    private bool canPickUp;
+
+    public PlayerMovement playerMovement;
+
+    public float speedMultiplier = 2f;
+    public float boostDuration = 7f;
+
+    void Update()
+    {
+        if (canPickUp &&
+            Keyboard.current != null &&
+            Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            PickUp();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PowerUp"))
+        {
+            powerUp = other.gameObject;
+            canPickUp = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == powerUp)
+        {
+            powerUp = null;
+            canPickUp = false;
+        }
+    }
+
+    private void PickUp()
+    {
+        if (powerUp == null) return;
+
+        Debug.Log("Speed boost collected!");
+
+        playerMovement.StartSpeedBoost(
+            speedMultiplier, boostDuration
+        );
+
+        Destroy(powerUp);
+        powerUp = null;
+        canPickUp = false;
+    }
+}*/
