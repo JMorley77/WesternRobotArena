@@ -109,6 +109,9 @@ public class GameManager : NetworkBehaviour
             spawnPoint.rotation
         );
 
+        player.tag = (clientId == 0) ? ("TeamRed") : ("TeamBlue") ;
+
+
         player.GetComponent<NetworkObject>()
               .SpawnAsPlayerObject(clientId);
 
