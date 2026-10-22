@@ -1,14 +1,16 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Netcode;
+using UnityEngine;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager : NetworkBehaviour
 {
     public GameManager gameManager;
     // Points for each team
-    [SerializeField] private int teamRedPoints = 0;
-    [SerializeField] private int teamBluePoints = 0;
+    public NetworkVariable<int> RedPoints = new NetworkVariable<int>(0);
+    public NetworkVariable<int> BluePoints = new NetworkVariable<int>(0);
+
     [SerializeField] TextMeshProUGUI redScoreText;
     [SerializeField] TextMeshProUGUI blueScoreText;
 
@@ -21,31 +23,35 @@ public class ScoreManager : MonoBehaviour
     {
         remainingTime = gameManager.TimeRemaining.Value;
     }
-
+    public override void OnNetworkSpawn()
+    {
+        RedPoints.OnValueChanged += (o, n) => redScoreText.text = "RED: " + n;
+        BluePoints.OnValueChanged += (o, n) => blueScoreText.text = "BLUE: " + n;
+        redScoreText.text = "RED: " + RedPoints.Value;
+        blueScoreText.text = "BLUE: " + BluePoints.Value;
+    }
 
     #region Point System
     public void RedPointIncrease()
     {
-        teamRedPoints++;
-        redScoreText.text = "RED: " + teamRedPoints.ToString();
-        Debug.Log("Team Red scored! Current score: " + teamRedPoints);
+        if (!IsServer) return;
+        RedPoints.Value++;
     }
 
     public void BluePointIncrease()
     {
-        teamBluePoints++;
-        blueScoreText.text = "BLUE: " + teamBluePoints.ToString();
-        Debug.Log("Team Blue scored! Current score: " + teamBluePoints);
+        if (!IsServer) return;
+        BluePoints.Value++;
     }
 
     void EndGame()
     {
-        if (teamRedPoints == teamBluePoints)
+        if (RedPoints.Value == BluePoints.Value)
         {
             Debug.Log("It's a tie!");
             // Add Draw Screen
         }
-        else if (teamRedPoints >= teamBluePoints)
+        else if (RedPoints.Value >= BluePoints.Value)
         {
             Debug.Log("Team Red wins!");
             // Add Red Win Screen
@@ -79,8 +85,8 @@ public class ScoreManager : MonoBehaviour
         if (gameManager.State.Value == GameManager.GameState.InGame)
         {
             if (remainingTime <= 0 ||
-                teamRedPoints >= maxPoints ||
-                teamBluePoints >= maxPoints)
+                RedPoints.Value >= maxPoints ||
+                BluePoints.Value >= maxPoints)
             {
                 EndGame();
             }

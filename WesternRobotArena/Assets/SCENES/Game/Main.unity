@@ -748,11 +748,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5608153145173498280, guid: d5854adafb80a31419bbd84dd8ab9cc1, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 1291659518}
   m_SourcePrefab: {fileID: 100100000, guid: d5854adafb80a31419bbd84dd8ab9cc1, type: 3}
 --- !u!224 &1030880636 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3442758592768461287, guid: d5854adafb80a31419bbd84dd8ab9cc1, type: 3}
+  m_PrefabInstance: {fileID: 1030880635}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1030880637 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5608153145173498280, guid: d5854adafb80a31419bbd84dd8ab9cc1, type: 3}
   m_PrefabInstance: {fileID: 1030880635}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1133797370
@@ -843,12 +851,39 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7601298567559053669, guid: d5854adafb80a31419bbd84dd8ab9cc1, type: 3}
   m_PrefabInstance: {fileID: 1030880635}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1030880637}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d92c65521f3690a4e806460f1e26ef03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
+--- !u!114 &1291659518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030880637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 2516021563
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  m_InScenePlacedDisabledByDefault: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  m_InScenePlaced: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1328816971
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,9 +1475,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92c65521f3690a4e806460f1e26ef03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
+  ShowTopMostFoldoutHeaderGroup: 1
   gameManager: {fileID: 1785781288}
-  teamRedPoints: 0
-  teamBluePoints: 0
+  RedPoints:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
+  BluePoints:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
   redScoreText: {fileID: 2015022946}
   blueScoreText: {fileID: 197201284}
   timerText: {fileID: 419133505}
