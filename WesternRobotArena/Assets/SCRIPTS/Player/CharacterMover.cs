@@ -1,6 +1,7 @@
 using UnityEngine;
+using Unity.Netcode;
 
-public class CharacterMover : MonoBehaviour
+public class CharacterMover : NetworkBehaviour
 {
     private InputHandler input;
 
@@ -20,11 +21,10 @@ public class CharacterMover : MonoBehaviour
 
     void Update()
     {
-        var targetVector = new Vector3(
-            input.InputVector.x,
-            0,
-            input.InputVector.y
-        );
+        if (!IsOwner)
+            return;
+
+        var targetVector = new Vector3(input.InputVector.x, 0, input.InputVector.y);
 
         var movementVector = MoveTowardTarget(targetVector);
 
@@ -72,8 +72,7 @@ public class CharacterMover : MonoBehaviour
 
     private void RotateTowardMouse()
     {
-        Ray ray =
-            camera.ScreenPointToRay(input.MousePosition);
+        Ray ray = camera.ScreenPointToRay(input.MousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo, 300f))
         {

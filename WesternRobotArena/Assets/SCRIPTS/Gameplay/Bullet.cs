@@ -1,6 +1,7 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : NetworkBehaviour
 {
     [SerializeField]
     private float speed = 15f;
@@ -8,30 +9,43 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float lifeTime = 3f;
 
-    private GameObject owner;
+    private ulong ownerClientId;
 
-    private void Start()
+    private float lifeTimer;
+
+    public void SetOwner(ulong clientId)
     {
-        Destroy(gameObject, lifeTime);
+        ownerClientId = clientId;
     }
 
     private void Update()
     {
-        transform.position +=
-            transform.forward * speed * Time.deltaTime;
-    }
+        if (!IsServer)
+            return;
 
-    public void SetOwner(GameObject newOwner)
-    {
-        owner = newOwner;
+        transform.position += transform.forward * speed * Time.deltaTime;
+
+        lifeTimer += Time.deltaTime;
+
+        if (lifeTimer >= lifeTime)
+        {
+            NetworkObject.Despawn();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        //stops the bullet hitting the player who fired it
-        if (other.transform.root.gameObject == owner)
+        if (!IsServer)
             return;
 
-        Destroy(gameObject);
+        var hitNetworkObject = other.GetComponentInParent<NetworkObject>();
+
+        //stops the bullet hitting the player who fired it
+        if (hitNetworkObject != null && hitNetworkObject.OwnerClientId == ownerClientId)
+        {
+            return;
+        }
+
+        NetworkObject.Despawn();
     }
 }
