@@ -40,7 +40,13 @@ public class ArenaCamera : MonoBehaviour
 
     public void AddPlayer(Transform player)
     {
-        players.Add(player);
+        if (!players.Contains(player))
+            players.Add(player);
+    }
+
+    public void RemovePlayer(Transform player)
+    {
+        players.Remove(player);
     }
 
     private Vector3 GetTargetPosition() //gets the middle point between both players
@@ -56,12 +62,7 @@ public class ArenaCamera : MonoBehaviour
         var cameraOffset = -transform.forward * cameraDistance;
         var targetPosition = target + cameraOffset;
 
-        transform.position = Vector3.SmoothDamp(
-            transform.position,
-            targetPosition,
-            ref cameraVelocity,
-            smoothTime
-        );
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref cameraVelocity, smoothTime);
     }
 
     private void ZoomCamera()
@@ -74,15 +75,9 @@ public class ArenaCamera : MonoBehaviour
             var player1Position = transform.InverseTransformPoint(players[0].position);
             var player2Position = transform.InverseTransformPoint(players[1].position);
 
-            var horizontalDistance = Mathf.Max(
-                Mathf.Abs(player1Position.x),
-                Mathf.Abs(player2Position.x)
-            );
+            var horizontalDistance = Mathf.Max(Mathf.Abs(player1Position.x), Mathf.Abs(player2Position.x));
 
-            var verticalDistance = Mathf.Max(
-                Mathf.Abs(player1Position.y),
-                Mathf.Abs(player2Position.y)
-            );
+            var verticalDistance = Mathf.Max(Mathf.Abs(player1Position.y), Mathf.Abs(player2Position.y));
 
             //accounts for the screen width
             var horizontalZoom = horizontalDistance / cam.aspect;
@@ -94,11 +89,6 @@ public class ArenaCamera : MonoBehaviour
                 targetZoom = minZoom;
         }
 
-        cam.orthographicSize = Mathf.SmoothDamp(
-            cam.orthographicSize,
-            targetZoom,
-            ref zoomVelocity,
-            smoothTime
-        );
+        cam.orthographicSize = Mathf.SmoothDamp(cam.orthographicSize, targetZoom, ref zoomVelocity, smoothTime);
     }
 }

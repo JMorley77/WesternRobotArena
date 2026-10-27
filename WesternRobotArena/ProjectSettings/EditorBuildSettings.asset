@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/SCENES/Development/AlexTest.unity
+    guid: aa90aae49db68fd47b32273ec4daa652
+  - enabled: 1
     path: Assets/SCENES/Game/Main.unity
     guid: 41a85753c6c6edf438b6043f0951b34f
   - enabled: 1

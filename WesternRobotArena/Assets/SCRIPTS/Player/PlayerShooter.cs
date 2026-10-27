@@ -1,8 +1,10 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerShooter : MonoBehaviour
+public class PlayerShooter : NetworkBehaviour
 {
     private InputHandler input;
+    private WeaponManager weaponManager;
 
     [SerializeField]
     private GameObject bulletPrefab;
@@ -18,26 +20,33 @@ public class PlayerShooter : MonoBehaviour
     private void Awake()
     {
         input = GetComponent<InputHandler>();
+        weaponManager = GetComponent<WeaponManager>();
     }
 
     private void Update()
     {
+        if (!IsOwner)
+            return;
+
+        if (!weaponManager.GunEquipped())
+            return;
+
         if (input.ShootHeld && Time.time >= nextFireTime)
         {
-            Shoot();
+            ShootRpc();
 
             nextFireTime = Time.time + 1f / fireRate;
         }
     }
 
-    private void Shoot()
+    [Rpc(SendTo.Server)]
+    private void ShootRpc()
     {
-        var bullet = Instantiate(
-            bulletPrefab,
-            gun.position,
-            gun.rotation
-        );
+        var bullet = Instantiate( bulletPrefab, gun.position, gun.rotation);
 
-        bullet.GetComponent<Bullet>().SetOwner(gameObject);
+        var bulletScript = bullet.GetComponent<Bullet>();
+        bulletScript.SetOwner(OwnerClientId);
+
+        bullet.GetComponent<NetworkObject>().Spawn();
     }
 }
