@@ -545,6 +545,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &426608962 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3181586475074163644, guid: 593be64293e617b4a972ebc8a5a6a100, type: 3}
+  m_PrefabInstance: {fileID: 1596203210}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &517502969
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +803,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b9d278be44031c419d8b318568bf3da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FallRespawn
-  playerHealth: {fileID: 8445403139101315916, guid: 7d7c55b8faba20d40bf519f8a7181ab7, type: 3}
   outlawSpawnPoint: {fileID: 1447496064}
   sheriffSpawnPoint: {fileID: 517502970}
 --- !u!1 &992304081
@@ -1728,13 +1732,43 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3181586475074163644, guid: 593be64293e617b4a972ebc8a5a6a100, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1596203214}
   m_SourcePrefab: {fileID: 100100000, guid: 593be64293e617b4a972ebc8a5a6a100, type: 3}
 --- !u!4 &1596203211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3484249122078654238, guid: 593be64293e617b4a972ebc8a5a6a100, type: 3}
   m_PrefabInstance: {fileID: 1596203210}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1596203214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426608962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 2257323212
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  m_InScenePlacedDisabledByDefault: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  m_InScenePlaced: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1785781286
 GameObject:
   m_ObjectHideFlags: 0
@@ -1797,7 +1831,8 @@ MonoBehaviour:
   gameDuration: 480
   startCountdownDuration: 5
   requiredPlayers: 2
-  playerPrefab: {fileID: 8130922631516715861, guid: 7d7c55b8faba20d40bf519f8a7181ab7, type: 3}
+  SheriffPrefab: {fileID: 8130922631516715861, guid: 7d7c55b8faba20d40bf519f8a7181ab7, type: 3}
+  CowboyPrefab: {fileID: 4289111737742298619, guid: 683b2a379b9fc994f86277c278e07aa5, type: 3}
   spawnPoints:
   - {fileID: 517502970}
   - {fileID: 1447496064}

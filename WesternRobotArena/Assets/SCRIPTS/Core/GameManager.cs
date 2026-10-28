@@ -16,7 +16,8 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private int requiredPlayers = 2;
 
     [Header("Player Settings")]
-    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject SheriffPrefab;
+    [SerializeField] private GameObject CowboyPrefab;
     [SerializeField] private Transform[] spawnPoints;
 
     private int nextSpawnIndex = 0;
@@ -100,11 +101,23 @@ public class GameManager : NetworkBehaviour
             return;
         }
 
+        GameObject selectedPrefab;
+
+        if (clientId == 0)
+        {
+            selectedPrefab = SheriffPrefab;
+        }
+        else
+        {
+            selectedPrefab = CowboyPrefab;
+        }
+
+
         Transform spawnPoint = spawnPoints[nextSpawnIndex % spawnPoints.Length];
         nextSpawnIndex++;
 
         GameObject player = Instantiate(
-            playerPrefab,
+            selectedPrefab,
             spawnPoint.position,
             spawnPoint.rotation
         );
@@ -112,8 +125,7 @@ public class GameManager : NetworkBehaviour
         player.tag = (clientId == 0) ? ("TeamRed") : ("TeamBlue") ;
 
 
-        player.GetComponent<NetworkObject>()
-              .SpawnAsPlayerObject(clientId);
+        player.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
 
         Debug.Log($"Client {clientId} spawned at {spawnPoint.position}");
     }
