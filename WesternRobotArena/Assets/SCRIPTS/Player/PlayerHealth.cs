@@ -31,7 +31,7 @@ public class PlayerHealth : NetworkBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         CurrentHealth.Value = 0f;
 
