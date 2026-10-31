@@ -20,5 +20,5 @@ MonoBehaviour:
   attackRange: 2
   attackCooldown: 1
   rewardValue: 1
-  spawnRate: 10
+  spawnRate: 30
   numEnemiesPerWave: 5

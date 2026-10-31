@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class HillZone : MonoBehaviour
+public class HillZone : NetworkBehaviour
 {
     [SerializeField] private ScoreManager scoreManager;
     
@@ -13,6 +14,7 @@ public class HillZone : MonoBehaviour
 
     void Update()
     {
+        if (!NetworkManager.Singleton.IsServer) return;  
         scoreTimer += Time.deltaTime;
 
         if (scoreTimer >= 1f)
@@ -25,6 +27,7 @@ public class HillZone : MonoBehaviour
     // When the players enter the objective area
     void OnTriggerEnter(Collider other)
     {
+        if (!NetworkManager.Singleton.IsServer) return;
         if (other.gameObject.CompareTag("TeamRed"))
         {
             Debug.Log("Team Red is in the hill zone");
@@ -42,6 +45,7 @@ public class HillZone : MonoBehaviour
     // When the players exit the objective area
     void OnTriggerExit(Collider other)
     {
+        if (!NetworkManager.Singleton.IsServer) return;
         if (other.gameObject.CompareTag("TeamRed"))
         {
             Debug.Log("Team Red has exited the hill zone");
