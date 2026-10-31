@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 8751724484740809589}
   - component: {fileID: 9110764868573766326}
   - component: {fileID: 6639714784792488625}
-  - component: {fileID: -4740593567767425236}
   - component: {fileID: 5537303846453545204}
+  - component: {fileID: -4740593567767425236}
   - component: {fileID: 7157740611794803835}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,20 +143,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &-4740593567767425236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3742496411736017564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d638d8fc062a93b4a9077175292d27ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  speed: 15
-  lifeTime: 3
 --- !u!114 &5537303846453545204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 0
+  GlobalObjectIdHash: 942732024
   InScenePlacedSourceGlobalObjectIdHash: 0
   m_InScenePlacedDisabledByDefault: 0
   DeferredDespawnTick: 0
@@ -184,6 +170,22 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &-4740593567767425236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3742496411736017564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d638d8fc062a93b4a9077175292d27ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Bullet
+  ShowTopMostFoldoutHeaderGroup: 1
+  speed: 15
+  lifeTime: 6
+  bulletDamage: 20
 --- !u!114 &7157740611794803835
 MonoBehaviour:
   m_ObjectHideFlags: 0

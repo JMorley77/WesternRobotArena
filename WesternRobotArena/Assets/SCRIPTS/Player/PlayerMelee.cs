@@ -17,6 +17,9 @@ public class PlayerMelee : NetworkBehaviour
     private float attackCooldown = 0.5f;
 
     [SerializeField]
+    private float meleeDamage = 25f;
+
+    [SerializeField]
     private GameObject meleeIndicator;
 
     private float nextAttackTime;
@@ -56,7 +59,14 @@ public class PlayerMelee : NetworkBehaviour
             if (hit.transform.root == transform.root)
                 continue;
 
-            Debug.Log(gameObject.name + " melee hit " + hit.gameObject.name);
+            var playerHealth = hit.GetComponentInParent<PlayerHealth>();
+
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(meleeDamage);
+
+                Debug.Log(gameObject.name + " melee hit " + hit.gameObject.name);
+            }
         }
     }
 
