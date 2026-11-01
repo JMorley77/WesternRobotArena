@@ -1,26 +1,51 @@
 using TMPro;
-using Unity.Netcode;
 using UnityEngine;
+using Unity.Netcode;
 
 public class CountDownTimer : MonoBehaviour
 {
-    [SerializeField] private GameManager gameManager;
+    [Header("Countdown UI")]
     [SerializeField] private TMP_Text countdownText;
+
+    [Header("Game Managers")]
+    [SerializeField] private LocalGameManager localGameManager;
+    [SerializeField] private GameManager multiplayerGameManager;
 
     private void Update()
     {
-        if (gameManager == null || countdownText == null)
+        if (countdownText == null)
             return;
 
-        if (gameManager.State.Value == GameManager.GameState.Starting)
+        if (localGameManager != null)
         {
-            countdownText.gameObject.SetActive(true);
+            if (localGameManager.State == LocalGameManager.GameState.Starting)
+            {
+                ShowCountdown(localGameManager.StartTimeRemaining);
+            }
+            else
+            {
+                countdownText.gameObject.SetActive(false);
+            }
 
-            countdownText.text = Mathf.CeilToInt(gameManager.StartTimeRemaining.Value).ToString();
+            return;
         }
-        else
+
+        if (multiplayerGameManager != null)
         {
-            countdownText.gameObject.SetActive(false);
+            if (multiplayerGameManager.State.Value == GameManager.GameState.Starting)
+            {
+                ShowCountdown(multiplayerGameManager.StartTimeRemaining.Value);
+            }
+            else
+            {
+                countdownText.gameObject.SetActive(false);
+            }
         }
+    }
+
+    private void ShowCountdown(float timeRemaining)
+    {
+        countdownText.gameObject.SetActive(true);
+        countdownText.text = Mathf.CeilToInt(timeRemaining).ToString();
     }
 }

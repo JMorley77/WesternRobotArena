@@ -5,8 +5,7 @@ using Unity.Netcode;
 public class HillZone : NetworkBehaviour
 {
     [SerializeField] private ScoreManager scoreManager;
-    
-    // A HashSet to keep track of which players are currently in the objective area
+
     HashSet<Collider> redPlayersInZone = new HashSet<Collider>();
     HashSet<Collider> bluePlayersInZone = new HashSet<Collider>();
 
@@ -24,7 +23,7 @@ public class HillZone : NetworkBehaviour
         }
     }
 
-    // When the players enter the objective area
+
     void OnTriggerEnter(Collider other)
     {
         if (!IsServer) return;
@@ -42,7 +41,7 @@ public class HillZone : NetworkBehaviour
         AreaCheck();
     } 
 
-    // When the players exit the objective area
+
     void OnTriggerExit(Collider other)
     {
         if (!IsServer) return;
@@ -60,7 +59,7 @@ public class HillZone : NetworkBehaviour
         AreaCheck();
     }
 
-    // Check if both teams are in the objective area
+
     void AreaCheck()
     {
         bool redTeam = redPlayersInZone.Count > 0;

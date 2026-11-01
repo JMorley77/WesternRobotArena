@@ -29,7 +29,13 @@ public class PlayerHealth : NetworkBehaviour
             Die();
         }
     }
+    public void ResetHealth()
+    {
+        if (!IsServer)
+            return;
 
+        CurrentHealth.Value = maxHealth;
+    }
     public void Die()
     {
         if (!IsServer)

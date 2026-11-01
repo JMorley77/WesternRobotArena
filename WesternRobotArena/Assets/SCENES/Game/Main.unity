@@ -1893,7 +1893,7 @@ MonoBehaviour:
   redScoreText: {fileID: 2015022946}
   blueScoreText: {fileID: 197201284}
   timerText: {fileID: 419133505}
-  maxPoints: 800
+  maxPoints: 10
 --- !u!1 &1822895190
 GameObject:
   m_ObjectHideFlags: 0
@@ -2009,8 +2009,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8081e0f69f6118440b37bc3cdaefc48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CountDownTimer
-  gameManager: {fileID: 1785781288}
   countdownText: {fileID: 1328816973}
+  localGameManager: {fileID: 0}
+  multiplayerGameManager: {fileID: 1785781288}
 --- !u!1 &1915223733
 GameObject:
   m_ObjectHideFlags: 0

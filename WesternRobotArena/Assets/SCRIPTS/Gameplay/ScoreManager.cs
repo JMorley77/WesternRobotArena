@@ -76,17 +76,11 @@ public class ScoreManager : NetworkBehaviour
         int minutes = Mathf.FloorToInt(remainingTime / 60);
         int seconds = Mathf.FloorToInt(remainingTime % 60);
 
-        timerText.text = string.Format(
-            "{0:00}:{1:00}",
-            minutes,
-            seconds
-        );
+        timerText.text = string.Format("{0:00}:{1:00}",minutes,seconds);
 
         if (gameManager.State.Value == GameManager.GameState.InGame)
         {
-            if (remainingTime <= 0 ||
-                RedPoints.Value >= maxPoints ||
-                BluePoints.Value >= maxPoints)
+            if (remainingTime <= 0 ||RedPoints.Value >= maxPoints ||BluePoints.Value >= maxPoints)
             {
                 EndGame();
             }
