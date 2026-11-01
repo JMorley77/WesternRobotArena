@@ -5,8 +5,7 @@ public class PlayerHealth : NetworkBehaviour
 {
     [SerializeField] private float maxHealth = 100f;
 
-    public NetworkVariable<float> CurrentHealth =
-        new NetworkVariable<float>();
+    public NetworkVariable<float> CurrentHealth = new NetworkVariable<float>();
 
     public override void OnNetworkSpawn()
     {
@@ -33,8 +32,13 @@ public class PlayerHealth : NetworkBehaviour
 
     public void Die()
     {
+        if (!IsServer)
+            return;
+
         CurrentHealth.Value = 0f;
 
         Debug.Log("Player died");
+
+        NetworkObject.Despawn();
     }
 }

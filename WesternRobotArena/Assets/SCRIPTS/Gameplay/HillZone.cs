@@ -14,7 +14,7 @@ public class HillZone : NetworkBehaviour
 
     void Update()
     {
-        if (!NetworkManager.Singleton.IsServer) return;  
+        if (!IsServer) return;
         scoreTimer += Time.deltaTime;
 
         if (scoreTimer >= 1f)
@@ -27,7 +27,7 @@ public class HillZone : NetworkBehaviour
     // When the players enter the objective area
     void OnTriggerEnter(Collider other)
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        if (!IsServer) return;
         if (other.gameObject.CompareTag("TeamRed"))
         {
             Debug.Log("Team Red is in the hill zone");
@@ -45,7 +45,7 @@ public class HillZone : NetworkBehaviour
     // When the players exit the objective area
     void OnTriggerExit(Collider other)
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        if (!IsServer) return;
         if (other.gameObject.CompareTag("TeamRed"))
         {
             Debug.Log("Team Red has exited the hill zone");

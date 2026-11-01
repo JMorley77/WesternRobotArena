@@ -9,6 +9,9 @@ public class Bullet : NetworkBehaviour
     [SerializeField]
     private float lifeTime = 3f;
 
+    [SerializeField]
+    private float bulletDamage = 20f;
+
     private ulong ownerClientId;
 
     private float lifeTimer;
@@ -38,12 +41,17 @@ public class Bullet : NetworkBehaviour
         if (!IsServer)
             return;
 
-        var hitNetworkObject = other.GetComponentInParent<NetworkObject>();
+        Debug.Log("Bullet hit: " + other.gameObject.name);
 
-        //stops the bullet hitting the player who fired it
-        if (hitNetworkObject != null && hitNetworkObject.OwnerClientId == ownerClientId)
+        var playerHealth = other.GetComponentInParent<PlayerHealth>();
+
+        if (playerHealth != null)
         {
-            return;
+            //stops the player damaging themselves
+            if (playerHealth.OwnerClientId == ownerClientId)
+                return;
+
+            playerHealth.TakeDamage(bulletDamage);
         }
 
         NetworkObject.Despawn();

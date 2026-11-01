@@ -24,6 +24,12 @@ public class CharacterMover : NetworkBehaviour
         if (!IsOwner)
             return;
 
+        if (camera == null)
+            camera = Camera.main;
+
+        if (camera == null)
+            return;
+
         var targetVector = new Vector3(input.InputVector.x, 0, input.InputVector.y);
 
         var movementVector = MoveTowardTarget(targetVector);

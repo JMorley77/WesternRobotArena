@@ -7,6 +7,20 @@ public class NetworkPlayerCamera : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        FindCamera();
+    }
+
+    private void Update()
+    {
+        if (arenaCamera == null)
+            FindCamera();
+    }
+
+    private void FindCamera()
+    {
+        if (Camera.main == null)
+            return;
+
         arenaCamera = Camera.main.GetComponent<ArenaCamera>();
 
         if (arenaCamera != null)

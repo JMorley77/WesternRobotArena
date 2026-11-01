@@ -41,7 +41,11 @@ public class ArenaCamera : MonoBehaviour
     public void AddPlayer(Transform player)
     {
         if (!players.Contains(player))
+        {
             players.Add(player);
+
+            Debug.Log("Camera added player: " + player.name);
+        }
     }
 
     public void RemovePlayer(Transform player)
