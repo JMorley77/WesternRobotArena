@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: HeavyEnemyStats
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   AIName: Heavy
-  prefab: {fileID: 6188442792819705576, guid: c1ec2e9b91931af4ba6622b814d2346d, type: 3}
+  prefab: {fileID: 7614365539049271289, guid: c1ec2e9b91931af4ba6622b814d2346d, type: 3}
   maxHealth: 100
   moveSpeed: 5
   attackDamage: 2
-  attackRange: 2
+  attackRange: 3
   attackCooldown: 1
   rewardValue: 2
   spawnRate: 30

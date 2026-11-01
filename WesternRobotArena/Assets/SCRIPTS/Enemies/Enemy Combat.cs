@@ -2,38 +2,49 @@ using UnityEngine;
 
 public class EnemyCombat : MonoBehaviour
 {
-    private EnemyStats enemystats;
+    private EnemyStats enemyStats;
 
     private float nextAttackTime = 0f;
-    public void Initialise (EnemyStats stats)
+
+    public void Initialise(EnemyStats stats)
     {
-        enemystats = stats;
+        enemyStats = stats;
     }
 
     public void TryAttack(Transform target)
     {
-        if(target == null)
-            return; 
-        if(enemystats == null)
+        if (target == null || enemyStats == null)
             return;
 
-        if(Time.time < nextAttackTime)
+        if (Time.time < nextAttackTime)
             return;
 
-        float distance = Vector3.Distance(transform.position, target.position);
+        float distance = Vector3.Distance(
+            transform.position,
+            target.position
+        );
 
-        if(distance > enemystats.attackRange)
+        if (distance > enemyStats.attackRange)
             return;
 
-        PlayerHealth playerHealth = target.GetComponent<PlayerHealth>();
+        // Check for multiplayer health first.
+        PlayerHealth onlineHealth = target.GetComponent<PlayerHealth>();
 
-        if(playerHealth == null)
-            return;
+        if (onlineHealth != null)
+        {
+            onlineHealth.TakeDamage(enemyStats.attackDamage);
+        }
+        else
+        {
+            //check for local health.
+            PlayerHealthLocal localHealth =target.GetComponent<PlayerHealthLocal>();
 
-        playerHealth.TakeDamage(enemystats.attackDamage);
+            if (localHealth == null)
+                return;
 
-        nextAttackTime = Time.time + enemystats.attackCooldown;
+            localHealth.TakeDamage(enemyStats.attackDamage);
+        }
 
-
+        nextAttackTime = Time.time + enemyStats.attackCooldown;
     }
 }

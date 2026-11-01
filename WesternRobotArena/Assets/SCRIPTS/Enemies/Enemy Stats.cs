@@ -8,7 +8,7 @@ public class EnemyStats : ScriptableObject
     public string AIName;
 
     [Header("Prefab")]
-    public NetworkObject prefab;
+    public GameObject prefab;
 
     [Header("Stats")]
     public float maxHealth;

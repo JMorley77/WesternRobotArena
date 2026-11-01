@@ -54,9 +54,19 @@ public class EnemySpawner : NetworkBehaviour
             Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
 
-            NetworkObject enemyObject = Instantiate(enemy.prefab, spawnPoint.position, spawnPoint.rotation);
+            GameObject enemyObject = Instantiate(enemy.prefab,spawnPoint.position,spawnPoint.rotation);
 
-            enemyObject.Spawn();
+            NetworkObject networkObject = enemyObject.GetComponent<NetworkObject>();
+
+            if (networkObject == null)
+            {
+                Debug.LogError("Enemy prefab is missing NetworkObject!");
+                Destroy(enemyObject);
+                return;
+            }
+
+            networkObject.Spawn();
+
 
             EnemyController enemyController = enemyObject.GetComponent<EnemyController>();
 

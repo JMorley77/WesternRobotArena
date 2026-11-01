@@ -309,7 +309,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: f991ee312c5541549ace6ba4fa06aa87, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 18db2e963f767c04e8f4f2e8dabdbaf8, type: 2}
   m_BuildHeightMesh: 0
 --- !u!64 &365289331
 MeshCollider:
@@ -1032,16 +1032,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1392730617}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39668631e9ced694e986f39f4318e5eb, type: 3}
+  m_Script: {fileID: 11500000, guid: f3288adc96916fd42b3e57f65be6269e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  ShowTopMostFoldoutHeaderGroup: 1
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnerLocal
   enemyStats:
-  - {fileID: 11400000, guid: b72844e83a8281a46a998c2705734529, type: 2}
-  - {fileID: 11400000, guid: 7cf62849e43a24c4e95fdd5594255794, type: 2}
+  - {fileID: 11400000, guid: c98302050860d304aa89b520613a7ca2, type: 2}
+  - {fileID: 11400000, guid: 79efab34f1ac17b449405ffee7dab5a2, type: 2}
   spawnPoints:
   - {fileID: 641495265}
   - {fileID: 1976664396}
+  gameManager: {fileID: 1785781291}
 --- !u!1 &1447496063
 GameObject:
   m_ObjectHideFlags: 0

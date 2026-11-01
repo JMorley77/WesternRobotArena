@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: LightEnemyStats
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   AIName: Light
-  prefab: {fileID: 6188442792819705576, guid: 3931d96c2f7cde740a7cb4672acd7754, type: 3}
+  prefab: {fileID: 7614365539049271289, guid: 3931d96c2f7cde740a7cb4672acd7754, type: 3}
   maxHealth: 60
   moveSpeed: 8
   attackDamage: 1
-  attackRange: 2
+  attackRange: 3
   attackCooldown: 1
   rewardValue: 1
   spawnRate: 30
