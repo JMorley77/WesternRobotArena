@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class Collect : MonoBehaviour
 {
     public PowerUpManger powerUpManager;
-    public GameObject powerUp;
+    private GameObject powerUp;
     private bool canPickUp;
 
     void Start()
@@ -14,7 +14,7 @@ public class Collect : MonoBehaviour
 
     void Update()
     {
-        if (canPickUp && Keyboard.current[Key.E].wasPressedThisFrame)
+        if (canPickUp && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
             PickUp();
         }
@@ -45,8 +45,10 @@ public class Collect : MonoBehaviour
             return;
         }
 
-        Debug.Log("Power up collected");
-        powerUpManager.Speed();
+        PowerUp pickup = powerUp.GetComponent<PowerUp>();
+
+        powerUpManager.ActivatePowerUp(pickup.powerUpData);
+
         Destroy(powerUp);
 
         powerUp = null;

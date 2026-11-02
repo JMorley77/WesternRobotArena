@@ -8,8 +8,8 @@ public class PlayerHealth : NetworkBehaviour
     public NetworkVariable<float> CurrentHealth = new NetworkVariable<float>();
 
     [Header("Invincibility")]
-    private bool isInvincible = false;
-    private float invincibilityTimer = 0f;
+    private bool isInvincible;
+    private float invincibilityTimer;
 
     public void Update()
     {
@@ -50,13 +50,15 @@ public class PlayerHealth : NetworkBehaviour
         }
     }
 
-    public void Invincibility()
+    public void Invincibility(float duration)
     {
         if (!IsServer)
             return;
+
         isInvincible = true;
-        invincibilityTimer = 10;
-        Debug.Log(gameObject.name + " is now invincible for 10 seconds!");
+        invincibilityTimer = duration;
+
+        Debug.Log(gameObject.name + " is now invincible for " + duration + " seconds!");
     }
 
     public void ResetHealth()

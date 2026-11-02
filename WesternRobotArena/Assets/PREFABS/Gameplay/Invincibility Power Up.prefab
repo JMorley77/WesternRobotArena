@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 794186210969134412}
   - component: {fileID: 2841222442916427390}
   - component: {fileID: 208610684963133701}
+  - component: {fileID: -2892475093657089234}
   m_Layer: 0
-  m_Name: Power Up
+  m_Name: Invincibility Power Up
   m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,3 +113,16 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-2892475093657089234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20315341621470302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a5a973497153d4a80027f73f803709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUp
+  powerUpData: {fileID: 11400000, guid: 73b66d77da0069246b14f2af300cbdb9, type: 2}
