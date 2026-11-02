@@ -5,11 +5,18 @@ public class PowerUpManger : MonoBehaviour
     public float timeDuration = 10;
 
     [Header("Speed")]
-    public CharacterMover playerMovement;
+    //public CharacterMover playerMovement;
+    public JackTestDontUse playerMovement;
     public float speedMultiplier = 2;
+
     private float originalSpeed;
+    private float timer;
     private bool isSpeedActive;
-    
+
+    [Header("Invincibility")]
+    public PlayerHealthLocal localHealth;
+    public PlayerHealth multiplayerHealth;
+
     void Update()
     {
         if (!isSpeedActive)
@@ -17,39 +24,24 @@ public class PowerUpManger : MonoBehaviour
             return;
         }
         
-        timeDuration -= Time.deltaTime;
+        timer -= Time.deltaTime;
 
-        if (timeDuration <= 0)
+        if (timer <= 0)
         {
-            playerMovement.moveSpeed = originalSpeed;
+            playerMovement.speed = originalSpeed;
             isSpeedActive = false;
         }
     }
 
     public void Speed()
     {
-        Debug.Log("Speed method called");
-
-        if (playerMovement == null)
+        if (!isSpeedActive)
         {
-            Debug.LogError("PlayerMovement reference is missing!");
-            return;
+            originalSpeed = playerMovement.speed;
+            playerMovement.speed *= speedMultiplier;
+            isSpeedActive = true;
         }
 
-        Debug.Log("Speed before boost: " + playerMovement.moveSpeed);
-
-        if (isSpeedActive)
-        {
-            timeDuration = 10;
-            return;
-        }
-
-        originalSpeed = playerMovement.moveSpeed;
-        playerMovement.moveSpeed = originalSpeed * speedMultiplier;
-
-        Debug.Log("Speed after boost: " + playerMovement.moveSpeed);
-
-        timeDuration = 10;
-        isSpeedActive = true;
+        timer = timeDuration;
     }
 }

@@ -410,7 +410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpManger
   timeDuration: 10
-  playerMovement: {fileID: 0}
+  playerMovement: {fileID: 975500870}
   speedMultiplier: 2
 --- !u!4 &952929124
 Transform:
@@ -440,6 +440,7 @@ GameObject:
   - component: {fileID: 975500865}
   - component: {fileID: 975500864}
   - component: {fileID: 975500868}
+  - component: {fileID: 975500870}
   - component: {fileID: 975500869}
   m_Layer: 0
   m_Name: Player
@@ -580,7 +581,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1faef260b72340c47803736f9c8b3540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerUps
+  powerUpManager: {fileID: 952929123}
   powerUp: {fileID: 1026116560}
+--- !u!114 &975500870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975500863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c873dd8b35ed0a47a8b96cd502d6ca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JackTestDontUse
+  speed: 5
 --- !u!1 &1026116560 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 20315341621470302, guid: fd82b907040c4c74dbb5ba43bb4c38cf, type: 3}
