@@ -84,12 +84,4 @@ public class PlayerMelee : NetworkBehaviour
 
         meleeIndicator.SetActive(false);
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (meleePoint == null)
-            return;
-
-        Gizmos.DrawWireSphere(meleePoint.position, meleeRange);
-    }
 }

@@ -1,4 +1,6 @@
+
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -11,6 +13,11 @@ public class MainMenuUI : MonoBehaviour
         mainMenuPanel.SetActive(false);
         settingsPanel.SetActive(false);
         lobbyPanel.SetActive(true);
+    }
+
+    public void PlayLocal()
+    {
+        SceneManager.LoadScene("Local");
     }
 
     public void OpenSettings()

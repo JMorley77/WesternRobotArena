@@ -1,0 +1,78 @@
+
+using UnityEngine;
+using System.Collections;
+
+public class LocalPlayerMelee : MonoBehaviour
+{
+    private LocalInputHandler input;
+    private LocalWeaponManager weaponManager;
+
+    [SerializeField]
+    private Transform meleePoint;
+
+    [SerializeField]
+    private float meleeRange = 1f;
+
+    [SerializeField]
+    private float attackCooldown = 0.5f;
+
+    [SerializeField]
+    private float meleeDamage = 25f;
+
+    [SerializeField]
+    private GameObject meleeIndicator;
+
+    private float nextAttackTime;
+
+    private void Awake()
+    {
+        input = GetComponent<LocalInputHandler>();
+        weaponManager = GetComponent<LocalWeaponManager>();
+    }
+
+    private void Update()
+    {
+        //cant melee while the gun is equipped
+        if (!weaponManager.MeleeEquipped())
+            return;
+
+        if (input.ShootPressed && Time.time >= nextAttackTime)
+        {
+            MeleeAttack();
+
+            nextAttackTime = Time.time + attackCooldown;
+        }
+    }
+
+    private void MeleeAttack()
+    {
+        StartCoroutine(ShowIndicator());
+
+        var hits = Physics.OverlapSphere(meleePoint.position, meleeRange);
+
+        foreach (var hit in hits)
+        {
+            if (hit.transform.root == transform.root)
+                continue;
+
+            var playerHealth = hit.GetComponentInParent<PlayerHealthLocal>();
+
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(meleeDamage);
+
+                Debug.Log(gameObject.name + " melee hit " + hit.gameObject.name);
+                break;
+            }
+        }
+    }
+
+    private IEnumerator ShowIndicator()
+    {
+        meleeIndicator.SetActive(true);
+
+        yield return new WaitForSeconds(0.15f);
+
+        meleeIndicator.SetActive(false);
+    }
+}

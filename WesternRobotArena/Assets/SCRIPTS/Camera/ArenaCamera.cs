@@ -29,6 +29,8 @@ public class ArenaCamera : MonoBehaviour
 
     private void LateUpdate()
     {
+        players.RemoveAll(player => player == null); //removes destroyed player references
+
         if (players.Count == 0)
             return;
 

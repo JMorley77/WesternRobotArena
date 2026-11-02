@@ -34,6 +34,8 @@ public class LocalGameManager : MonoBehaviour
 
     private GameObject[] spawnedPlayers;
 
+    private ArenaCamera arenaCamera;
+
     public GameState State => state;
     public float TimeRemaining => timeRemaining;
     public float StartTimeRemaining => startTimeRemaining;
@@ -45,42 +47,82 @@ public class LocalGameManager : MonoBehaviour
         timeRemaining = gameDuration;
         startTimeRemaining = startCountdownDuration;
 
+        arenaCamera = mainCamera.GetComponent<ArenaCamera>();
+
         SpawnLocalPlayers();
     }
 
     private void SpawnLocalPlayers()
     {
-        if (spawnPoints == null || spawnPoints.Length < requiredPlayers)
+        if (requiredPlayers != 2)
+        {
+            Debug.LogError("This setup requires exactly two players.");
+            return;
+        }
+
+        if (spawnPoints == null ||
+            spawnPoints.Length < requiredPlayers)
         {
             Debug.LogError("Not enough spawn points assigned!");
             return;
         }
 
-        if (mainCamera == null)
+        if (Keyboard.current == null ||
+            Mouse.current == null ||
+            Gamepad.current == null)
         {
-            Debug.LogError("Main camera has not been assigned!");
+            Debug.LogError(
+                "Keyboard, mouse and gamepad are required!"
+            );
             return;
         }
 
         for (int i = 0; i < requiredPlayers; i++)
         {
-            GameObject selectedPrefab = (i == 0)? SheriffPrefab: CowboyPrefab;
+            GameObject selectedPrefab = i == 0 ? SheriffPrefab : CowboyPrefab;
 
             if (selectedPrefab == null)
             {
-                Debug.LogError($"Player {i + 1} prefab is missing!");
+                Debug.LogError($"Player {i + 1} prefab missing!");
                 return;
             }
 
+            if (selectedPrefab.GetComponent<PlayerInput>() == null)
+            {
+                Debug.LogError("Prefab needs a PlayerInput component!");
+                return;
+            }
+
+            PlayerInput playerInput;
+
+            if (i == 0)
+            {
+                playerInput = PlayerInput.Instantiate(selectedPrefab,playerIndex: i,controlScheme: "Keyboard&Mouse",pairWithDevices: new InputDevice[]{Keyboard.current, Mouse.current});
+            }
+            else
+            {
+                playerInput = PlayerInput.Instantiate(selectedPrefab,playerIndex: i,controlScheme: "Gamepad",pairWithDevice: Gamepad.current);
+            }
+
+            if (playerInput == null)
+            {
+                Debug.LogError($"Could not create Player {i + 1}");
+                return;
+            }
+
+            GameObject player = playerInput.gameObject;
             Transform spawnPoint = spawnPoints[i];
 
-            GameObject player = Instantiate(selectedPrefab,spawnPoint.position,spawnPoint.rotation);
+            player.transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
 
             spawnedPlayers[i] = player;
 
-            player.tag = (i == 0) ? "TeamRed" : "TeamBlue";
+            player.tag = i == 0 ? "TeamRed" : "TeamBlue";
 
-            Debug.Log($"Local Player {i + 1} spawned!");
+            arenaCamera.AddPlayer(player.transform); //tells camera which players have spawned
+
+            Debug.Log( $"Local Player {i + 1} spawned " + $"using {playerInput.currentControlScheme}"
+            );
         }
 
         state = GameState.Starting;
