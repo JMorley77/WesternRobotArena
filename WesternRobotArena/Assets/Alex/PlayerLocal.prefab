@@ -6329,7 +6329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpManger
   timeDuration: 10
-  playerMovement: {fileID: 0}
+  playerMovement: {fileID: 7884224348835860790}
   localHealth: {fileID: 3011496870854526114}
   multiplayerHealth: {fileID: 0}
 --- !u!1 &7361865534520250699

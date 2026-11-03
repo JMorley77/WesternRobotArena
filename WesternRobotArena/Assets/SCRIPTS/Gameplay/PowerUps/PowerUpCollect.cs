@@ -7,14 +7,9 @@ public class PowerUpCollect : MonoBehaviour
     private GameObject powerUp;
     private bool canPickUp;
 
-    /*void Start()
+    public void Interact(InputAction.CallbackContext context)
     {
-        canPickUp = false;
-    }*/
-
-    void Update()
-    {
-        if (canPickUp && Keyboard.current[Key.E].wasPressedThisFrame)
+        if (context.performed && canPickUp)
         {
             PickUp();
         }
