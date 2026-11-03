@@ -66,10 +66,8 @@ public class PlayerHealthLocal : MonoBehaviour
 
         OnPlayerDied?.Invoke(this);
 
-        // Disable the player movement and other components.
 
-
-        Destroy(gameObject);
+        ResetHealth();
     }
 
     public void ResetHealth()

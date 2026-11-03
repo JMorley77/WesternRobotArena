@@ -155,6 +155,7 @@ public class LocalGameManager : MonoBehaviour
         }
     }
 
+
     public void EndMatch()
     {
         if (state == GameState.Finished)

@@ -54,15 +54,6 @@ public class FallRespawn : MonoBehaviour
 
         player.transform.SetPositionAndRotation(spawnPoint.position,spawnPoint.rotation);
 
-        // Stop any remaining movement after respawning.
-        Rigidbody rb = player.GetComponent<Rigidbody>();
-
-        if (rb != null)
-        {
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-        }
-
         Debug.Log(player.name + " respawned!");
     }
 }

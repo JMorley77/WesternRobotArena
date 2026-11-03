@@ -56,6 +56,7 @@ public class LocalPlayerMelee : MonoBehaviour
                 continue;
 
             var playerHealth = hit.GetComponentInParent<PlayerHealthLocal>();
+            var enemyHealth = hit.GetComponentInParent<EnemyHealthLocal>();
 
             if (playerHealth != null)
             {
@@ -63,6 +64,11 @@ public class LocalPlayerMelee : MonoBehaviour
 
                 Debug.Log(gameObject.name + " melee hit " + hit.gameObject.name);
                 break;
+            }
+
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(meleeDamage);
             }
         }
     }

@@ -52,10 +52,7 @@ public class EnemyControllerLocal : MonoBehaviour
             return;
         }
 
-        float distance = Vector3.Distance(
-            transform.position,
-            target.position
-        );
+        float distance = Vector3.Distance(transform.position,target.position);
 
         if (distance <= enemyStats.attackRange)
         {
