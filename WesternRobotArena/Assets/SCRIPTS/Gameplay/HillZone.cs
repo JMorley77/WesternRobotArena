@@ -6,6 +6,12 @@ public class HillZone : NetworkBehaviour
 {
     [SerializeField] private ScoreManager scoreManager;
 
+    [Header("Zone Colours")]
+    public GameObject blue;
+    public GameObject red;
+    public GameObject yellow;
+    public GameObject white;
+
     HashSet<Collider> redPlayersInZone = new HashSet<Collider>();
     HashSet<Collider> bluePlayersInZone = new HashSet<Collider>();
 
@@ -68,16 +74,36 @@ public class HillZone : NetworkBehaviour
         if (redTeam && blueTeam)
         {
             Debug.Log("Both teams are contesting the hill!");
+            yellow.SetActive(true);
+            red.SetActive(false);
+            blue.SetActive(false);
+            white.SetActive(false);
+
         }
         else if (redTeam)
         {
             Debug.Log("Team Red is controlling the hill!");
             scoreManager.RedPointIncrease();
+            yellow.SetActive(false);
+            red.SetActive(true);
+            blue.SetActive(false);
+            white.SetActive(false);
         }
         else if (blueTeam)
         {
             Debug.Log("Team Blue is controlling the hill!");
             scoreManager.BluePointIncrease();
+            yellow.SetActive(false);
+            red.SetActive(false);
+            blue.SetActive(true);
+            white.SetActive(false);
+        }
+        else if (!blueTeam && !redTeam)
+        {
+            yellow.SetActive(false);
+            red.SetActive(false);
+            blue.SetActive(false);
+            white.SetActive(true);
         }
     }
 }
