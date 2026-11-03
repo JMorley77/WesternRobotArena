@@ -34,7 +34,7 @@ public class PlayerHealthLocal : MonoBehaviour
         if (invincibilityTimer <= 0)
         {
             isInvincible = false;
-            Debug.Log(gameObject.name + " is no longer invincible!");
+            //Debug.Log(gameObject.name + " is no longer invincible!");
         }
     }
 
