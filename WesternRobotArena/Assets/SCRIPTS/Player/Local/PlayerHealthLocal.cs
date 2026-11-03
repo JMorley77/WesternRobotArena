@@ -12,14 +12,32 @@ public class PlayerHealthLocal : MonoBehaviour
     public float MaxHealth => maxHealth;
     public bool IsDead => isDead;
 
+    [Header("Invincibility")]
+    private bool isInvincible;
+    private float invincibilityTimer;
+
     private void Start()
     {
         currentHealth = maxHealth;
     }
 
+    void Update()
+    {
+        if (isInvincible)
+            return;
+
+        invincibilityTimer -= Time.deltaTime;
+
+        if (invincibilityTimer <= 0)
+        {
+            isInvincible = false;
+            Debug.Log(gameObject.name + " is no longer invincible!");
+        }
+    }
+
     public void TakeDamage(float damage)
     {
-        if (isDead || damage <= 0f)
+        if (isDead || isInvincible || damage <= 0f)
             return;
 
         currentHealth -= damage;
@@ -31,6 +49,14 @@ public class PlayerHealthLocal : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void Invincibility(float duration)
+    {
+        isInvincible = true;
+        invincibilityTimer = duration;
+
+        Debug.Log(gameObject.name + " is now invincible for " + duration + " seconds!");
     }
 
     public void Die()

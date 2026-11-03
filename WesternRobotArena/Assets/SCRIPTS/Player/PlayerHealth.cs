@@ -7,6 +7,26 @@ public class PlayerHealth : NetworkBehaviour
 
     public NetworkVariable<float> CurrentHealth = new NetworkVariable<float>();
 
+    [Header("Invincibility")]
+    private bool isInvincible;
+    private float invincibilityTimer;
+
+    public void Update()
+    {
+        if (!IsServer || !isInvincible)
+        {
+            return;
+        }
+
+        invincibilityTimer -= Time.deltaTime;
+
+        if (invincibilityTimer <= 0)
+        {
+            isInvincible = false;
+            Debug.Log(gameObject.name + " is no longer invincible!");
+        }
+    }
+
     public override void OnNetworkSpawn()
     {
         if (!IsServer)
@@ -17,7 +37,7 @@ public class PlayerHealth : NetworkBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (!IsServer)
+        if (!IsServer || isInvincible || damage <= 0f)
             return;
 
         CurrentHealth.Value -= damage;
@@ -29,6 +49,18 @@ public class PlayerHealth : NetworkBehaviour
             Die();
         }
     }
+
+    public void Invincibility(float duration)
+    {
+        if (!IsServer)
+            return;
+
+        isInvincible = true;
+        invincibilityTimer = duration;
+
+        Debug.Log(gameObject.name + " is now invincible for " + duration + " seconds!");
+    }
+
     public void ResetHealth()
     {
         if (!IsServer)
