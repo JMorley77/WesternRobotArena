@@ -79,6 +79,7 @@ public class LocalGameManager : MonoBehaviour
 
         for (int i = 0; i < requiredPlayers; i++)
         {
+
             GameObject selectedPrefab = i == 0 ? SheriffPrefab : CowboyPrefab;
 
             if (selectedPrefab == null)

@@ -38,7 +38,9 @@ public class EnemyControllerLocal : MonoBehaviour
         agent.stoppingDistance = enemyStats.attackRange;
 
         if (enemyCombat != null)
+        {
             enemyCombat.Initialise(enemyStats);
+        }
     }
 
     private void Update()
@@ -95,10 +97,7 @@ public class EnemyControllerLocal : MonoBehaviour
         if (target == null || enemyCombat == null)
             return;
 
-        float distance = Vector3.Distance(
-            transform.position,
-            target.position
-        );
+        float distance = Vector3.Distance(transform.position,target.position);
 
         if (distance > enemyStats.attackRange)
         {
