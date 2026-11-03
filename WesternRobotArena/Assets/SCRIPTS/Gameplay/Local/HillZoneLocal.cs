@@ -7,6 +7,12 @@ public class HillZoneLocal : MonoBehaviour
     [SerializeField] private ScoreManagerLocal scoreManager;
     [SerializeField] private LocalGameManager gameManager;
 
+    [Header("Zone Colours")]
+    public GameObject blue;
+    public GameObject red;
+    public GameObject yellow;
+    public GameObject white;
+
     // Track players inside the hill
     private HashSet<Collider> redPlayersInZone = new HashSet<Collider>();
     private HashSet<Collider> bluePlayersInZone = new HashSet<Collider>();
@@ -75,18 +81,36 @@ public class HillZoneLocal : MonoBehaviour
         if (redTeam && blueTeam)
         {
             Debug.Log("Both teams are contesting the hill!");
+            yellow.SetActive(true);
+            red.SetActive(false);
+            blue.SetActive(false);
+            white.SetActive(false);
+
         }
         else if (redTeam)
         {
             Debug.Log("Team Red is controlling the hill!");
-
             scoreManager.RedPointIncrease();
+            yellow.SetActive(false);
+            red.SetActive(true);
+            blue.SetActive(false);
+            white.SetActive(false);
         }
         else if (blueTeam)
         {
             Debug.Log("Team Blue is controlling the hill!");
-
             scoreManager.BluePointIncrease();
+            yellow.SetActive(false);
+            red.SetActive(false);
+            blue.SetActive(true);
+            white.SetActive(false);
+        }
+        else if (!blueTeam && !redTeam)
+        {
+            yellow.SetActive(false);
+            red.SetActive(false);
+            blue.SetActive(false);
+            white.SetActive(true);
         }
     }
 
