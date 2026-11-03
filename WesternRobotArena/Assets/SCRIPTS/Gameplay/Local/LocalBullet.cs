@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class LocalBullet : MonoBehaviour
 {
+    [SerializeField] private EnemyHealthLocal enemyHealth;
+
     [SerializeField]
     private float speed = 15f;
 
@@ -39,6 +41,8 @@ public class LocalBullet : MonoBehaviour
 
         var playerHealth = other.GetComponentInParent<PlayerHealthLocal>();
 
+        var enemyHealth = other.GetComponentInParent<EnemyHealthLocal>();
+
         // Stops the player damaging themselves
         if (playerHealth != null && playerHealth.gameObject == owner)
             return;
@@ -47,7 +51,11 @@ public class LocalBullet : MonoBehaviour
         {
             playerHealth.TakeDamage(bulletDamage);
         }
-
+           
+        if(enemyHealth != null)
+        {
+            enemyHealth.TakeDamage(bulletDamage);
+        }
         Destroy(gameObject);
     }
 }

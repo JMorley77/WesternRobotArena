@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2178f0c812e7dd94a83c23e4aeaf4294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocalBullet
+  enemyHealth: {fileID: -727611723200096874, guid: 3d51fa42594193a4792b10ffe20794ce, type: 3}
   speed: 15
   lifeTime: 3
   bulletDamage: 20
