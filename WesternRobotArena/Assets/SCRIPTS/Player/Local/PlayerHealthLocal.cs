@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerHealthLocal : MonoBehaviour
@@ -11,6 +12,8 @@ public class PlayerHealthLocal : MonoBehaviour
     public float CurrentHealth => currentHealth;
     public float MaxHealth => maxHealth;
     public bool IsDead => isDead;
+
+    public event Action<PlayerHealthLocal> OnPlayerDied;
 
     [Header("Invincibility")]
     private bool isInvincible;
@@ -51,14 +54,6 @@ public class PlayerHealthLocal : MonoBehaviour
         }
     }
 
-    public void Invincibility(float duration)
-    {
-        isInvincible = true;
-        invincibilityTimer = duration;
-
-        Debug.Log(gameObject.name + " is now invincible for " + duration + " seconds!");
-    }
-
     public void Die()
     {
         if (isDead)
@@ -68,6 +63,8 @@ public class PlayerHealthLocal : MonoBehaviour
         currentHealth = 0f;
 
         Debug.Log(gameObject.name + " died!");
+
+        OnPlayerDied?.Invoke(this);
 
         // Disable the player movement and other components.
 
@@ -88,5 +85,13 @@ public class PlayerHealthLocal : MonoBehaviour
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
 
         Debug.Log(gameObject.name + " healed. Health: " + currentHealth);
+    }
+
+    public void Invincibility(float duration)
+    {
+        isInvincible = true;
+        invincibilityTimer = duration;
+
+        Debug.Log(gameObject.name + " is now invincible for " + duration + " seconds!");
     }
 }

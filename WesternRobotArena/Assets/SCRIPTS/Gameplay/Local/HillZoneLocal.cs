@@ -43,6 +43,15 @@ public class HillZoneLocal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        PlayerHealthLocal player = other.GetComponent<PlayerHealthLocal>();
+
+        if (player == null || player.IsDead)
+        {
+            return;
+        }
+
+        player.OnPlayerDied += OnPlayerDeath;
+
         if (other.CompareTag("TeamRed"))
         {
             Debug.Log("Team Red is in the hill zone");
@@ -57,6 +66,13 @@ public class HillZoneLocal : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        PlayerHealthLocal player = other.GetComponent<PlayerHealthLocal>();
+
+        if (player != null)
+        {
+            player.OnPlayerDied -= OnPlayerDeath;
+        }
+
         if (other.CompareTag("TeamRed"))
         {
             Debug.Log("Team Red has exited the hill zone");
@@ -112,6 +128,28 @@ public class HillZoneLocal : MonoBehaviour
             blue.SetActive(false);
             white.SetActive(true);
         }
+    }
+
+    #endregion
+
+    #region Death
+
+    private void OnPlayerDeath(PlayerHealthLocal player)
+    {
+        RemovePlayerFromZone(player);
+    }
+
+    private void RemovePlayerFromZone(PlayerHealthLocal player)
+    {
+        Collider playerCollider = player.GetComponent<Collider>();
+
+        if (playerCollider == null)
+        {
+            return;
+        }
+
+        bluePlayersInZone.Remove(playerCollider);
+        redPlayersInZone.Remove(playerCollider);
     }
 
     #endregion

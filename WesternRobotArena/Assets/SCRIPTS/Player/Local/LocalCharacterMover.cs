@@ -6,7 +6,7 @@ public class LocalCharacterMover : MonoBehaviour
 {
     private LocalInputHandler input;
 
-    [SerializeField] private float moveSpeed;
+    [SerializeField] public float moveSpeed;
     [SerializeField] private float rotateSpeed; // degrees per second
 
     private Camera camera;

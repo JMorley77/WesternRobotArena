@@ -5,8 +5,7 @@ public class PowerUpManger : MonoBehaviour
     public float timeDuration = 10;
 
     [Header("References")]
-    //public CharacterMover playerMovement;
-    public JackTestDontUse playerMovement;
+    public LocalCharacterMover playerMovement;
     public PlayerHealthLocal localHealth;
     public PlayerHealth multiplayerHealth;
     
@@ -22,7 +21,7 @@ public class PowerUpManger : MonoBehaviour
     {
         if(playerMovement != null)
         {
-            originalSpeed = playerMovement.speed;
+            originalSpeed = playerMovement.moveSpeed;
         }
     }
 
@@ -35,7 +34,7 @@ public class PowerUpManger : MonoBehaviour
 
             if (speedTimer <= 0)
             {
-                playerMovement.speed = originalSpeed;
+                playerMovement.moveSpeed = originalSpeed;
                 isSpeedActive = false;
             }
         }
@@ -72,10 +71,10 @@ public class PowerUpManger : MonoBehaviour
     {
         if (!isSpeedActive)
         {
-            originalSpeed = playerMovement.speed;
+            originalSpeed = playerMovement.moveSpeed;
         }
 
-        playerMovement.speed = originalSpeed * data.multiplier;
+        playerMovement.moveSpeed = originalSpeed * data.multiplier;
 
         speedTimer = data.duration;
         isSpeedActive = true;

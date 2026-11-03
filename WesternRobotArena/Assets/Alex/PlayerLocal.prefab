@@ -6054,6 +6054,8 @@ GameObject:
   - component: {fileID: 280278139824508262}
   - component: {fileID: 6982957910936553926}
   - component: {fileID: 6093876446668365445}
+  - component: {fileID: -3491411154668807517}
+  - component: {fileID: -645108362073387994}
   m_Layer: 0
   m_Name: PlayerLocal
   m_TagString: Untagged
@@ -6301,6 +6303,35 @@ MonoBehaviour:
   attackCooldown: 0.5
   meleeDamage: 25
   meleeIndicator: {fileID: 6518145777218924524}
+--- !u!114 &-3491411154668807517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7330188347696685077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1faef260b72340c47803736f9c8b3540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUpCollect
+  powerUpManager: {fileID: -645108362073387994}
+--- !u!114 &-645108362073387994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7330188347696685077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8703afe4b1bb4418c3f89526c5c888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUpManger
+  timeDuration: 10
+  playerMovement: {fileID: 0}
+  localHealth: {fileID: 3011496870854526114}
+  multiplayerHealth: {fileID: 0}
 --- !u!1 &7361865534520250699
 GameObject:
   m_ObjectHideFlags: 0
