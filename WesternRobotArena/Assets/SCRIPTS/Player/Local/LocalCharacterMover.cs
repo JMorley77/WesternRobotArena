@@ -1,13 +1,17 @@
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(LocalInputHandler))]
 public class LocalCharacterMover : MonoBehaviour
 {
+    [Header("Animation")]
+    [SerializeField] private PlayerAnimation playerAnimation;
+
     private LocalInputHandler input;
 
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float rotateSpeed; // degrees per second
+    [SerializeField] private float rotateSpeed;
 
     private Camera camera;
 
@@ -28,6 +32,20 @@ public class LocalCharacterMover : MonoBehaviour
 
         MoveTowardTarget(targetVector);
 
+        // Animation
+        if (targetVector.magnitude < 0.1f)
+        {
+            playerAnimation.Idle();
+        }
+        else if (Keyboard.current.leftShiftKey.isPressed)
+        {
+            playerAnimation.Run();
+        }
+        else
+        {
+            playerAnimation.Walk();
+        }
+
         // aiming
         if (input.UsingKeyboardMouse)
         {
@@ -43,7 +61,6 @@ public class LocalCharacterMover : MonoBehaviour
     {
         var speed = moveSpeed * Time.deltaTime;
 
-        // rotate movement so its relative to camera direction
         targetVector = Quaternion.Euler(0, camera.transform.eulerAngles.y, 0) * targetVector;
 
         var targetPosition = transform.position + targetVector * speed;
@@ -60,7 +77,6 @@ public class LocalCharacterMover : MonoBehaviour
 
         Vector3 aimDirection = new Vector3(aimInput.x, 0, aimInput.y);
 
-        // make aiming relative to camera direction.
         aimDirection = Quaternion.Euler(0, camera.transform.eulerAngles.y, 0) * aimDirection;
 
         Quaternion targetRotation = Quaternion.LookRotation(aimDirection);
