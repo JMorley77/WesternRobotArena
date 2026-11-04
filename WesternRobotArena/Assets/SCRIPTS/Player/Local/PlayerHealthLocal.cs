@@ -5,8 +5,8 @@ public class PlayerHealthLocal : MonoBehaviour
 {
     [Header("Health Settings")]
     [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private float currentHealth;
 
-    private float currentHealth;
     private bool isDead = false;
 
     public float CurrentHealth => currentHealth;

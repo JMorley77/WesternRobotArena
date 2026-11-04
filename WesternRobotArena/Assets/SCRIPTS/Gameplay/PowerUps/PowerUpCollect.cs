@@ -4,17 +4,23 @@ using UnityEngine.InputSystem;
 public class PowerUpCollect : MonoBehaviour
 {
     public PowerUpManger powerUpManager;
+    private LocalInputHandler inputHandler;
     private GameObject powerUp;
     private bool canPickUp;
 
-    public void Interact(InputAction.CallbackContext context)
+    private void Awake()
     {
-        if (context.performed && canPickUp)
+        inputHandler = GetComponent<LocalInputHandler>();
+    }
+
+    private void Update()
+    {
+        if (inputHandler != null && inputHandler.InteractPressed && canPickUp)
         {
             PickUp();
         }
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PowerUp"))
@@ -35,12 +41,12 @@ public class PowerUpCollect : MonoBehaviour
 
     private void PickUp()
     {
-        if (powerUp == null)
+        if (powerUp == null || powerUpManager == null)
         {
             return;
         }
 
-        PowerUp pickup = powerUp.GetComponent<PowerUp>();
+        PowerUp pickup = powerUp.GetComponentInParent<PowerUp>();
 
         Debug.Log("Power up collected");
 

@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SCENES/Game/Local.unity
     guid: d2b5573bf1ab0e5478a00c59b83943a4
+  - enabled: 1
+    path: Assets/SCENES/Game/Win Screens/RedWinScene.unity
+    guid: 38278cd897a593d4696e5716d0706be7
+  - enabled: 1
+    path: Assets/SCENES/Game/Win Screens/BlueWinScene.unity
+    guid: 8de964708f0df7e4ebadc9432920d896
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

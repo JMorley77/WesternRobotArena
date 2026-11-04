@@ -17,6 +17,10 @@ public class LocalInputHandler : MonoBehaviour
 
     public bool UsingKeyboardMouse { get; private set; }
 
+    public bool InteractPressed { get; private set; }
+
+    public bool PausePressed { get; private set; }
+
     private PlayerInput playerInput;
 
     private InputAction moveAction;
@@ -27,6 +31,10 @@ public class LocalInputHandler : MonoBehaviour
 
     private InputAction switchWeaponAction;
 
+    private InputAction interactAction;
+
+    private InputAction pauseAction;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -36,6 +44,8 @@ public class LocalInputHandler : MonoBehaviour
         pointAction = playerInput.actions["Point (Mouse Aim)"];
         shootAction = playerInput.actions["Shoot"];
         switchWeaponAction = playerInput.actions["SwitchWeapon"];
+        interactAction = playerInput.actions["Interact"];
+        pauseAction = playerInput.actions["Pause"];
     }
 
     private void Update()
@@ -47,6 +57,8 @@ public class LocalInputHandler : MonoBehaviour
         ShootHeld = shootAction.IsPressed();
         ShootPressed = shootAction.WasPressedThisFrame();
         SwitchWeaponPressed = switchWeaponAction.WasPressedThisFrame();
+        InteractPressed = interactAction.WasPressedThisFrame();
+        PausePressed = pauseAction.WasPressedThisFrame();
 
         UsingKeyboardMouse = playerInput.currentControlScheme == "Keyboard&Mouse";
     }

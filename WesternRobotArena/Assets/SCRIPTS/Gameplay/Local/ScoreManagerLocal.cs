@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreManagerLocal : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class ScoreManagerLocal : MonoBehaviour
     [Header("Game Timer")]
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private int maxPoints = 10;
+
+    [Header("Win Scenes")]
+    [SerializeField] private string redWinScene;
+    [SerializeField] private string blueWinScene;
 
     private bool gameEnded = false;
 
@@ -125,12 +130,12 @@ public class ScoreManagerLocal : MonoBehaviour
         else if (redPoints > bluePoints)
         {
             Debug.Log("Team Red wins!");
-            // Add Red Win Screen
+            SceneManager.LoadScene(redWinScene);
         }
         else
         {
             Debug.Log("Team Blue wins!");
-            // Add Blue Win Screen
+            SceneManager.LoadScene(blueWinScene);
         }
 
         if (gameManager != null)

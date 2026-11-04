@@ -3697,6 +3697,8 @@ GameObject:
   - component: {fileID: -3181114217335172060}
   - component: {fileID: -1164652823501089727}
   - component: {fileID: 4912445544512020351}
+  - component: {fileID: -4677456034703497634}
+  - component: {fileID: 8995647231309678051}
   m_Layer: 0
   m_Name: 'sheriff Local '
   m_TagString: TeamBlue
@@ -3829,6 +3831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthLocal
   maxHealth: 100
+  currentHealth: 0
 --- !u!114 &-3494378057051362096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3914,6 +3917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthLocal
   maxHealth: 100
+  currentHealth: 0
 --- !u!114 &-3181114217335172060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3960,6 +3964,35 @@ MonoBehaviour:
   attackCooldown: 0.5
   meleeDamage: 25
   meleeIndicator: {fileID: 1226399737233616240}
+--- !u!114 &-4677456034703497634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5136762054750165817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1faef260b72340c47803736f9c8b3540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUpCollect
+  powerUpManager: {fileID: 8995647231309678051}
+--- !u!114 &8995647231309678051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5136762054750165817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8703afe4b1bb4418c3f89526c5c888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUpManger
+  timeDuration: 10
+  playerMovement: {fileID: -4848644434976577099}
+  localHealth: {fileID: -1629182071053191200}
+  multiplayerHealth: {fileID: 0}
 --- !u!1 &5155214594710718220
 GameObject:
   m_ObjectHideFlags: 0
