@@ -10,10 +10,11 @@ public class LocalWeaponManager : MonoBehaviour
     }
 
     private LocalInputHandler input;
+    [SerializeField] PlayerAnimation playerAnimation;
 
     [SerializeField]
     private GameObject gun;
-
+    [SerializeField] private GameObject backWeapon;
     [SerializeField]
     private GameObject meleeWeapon;
 
@@ -33,17 +34,25 @@ public class LocalWeaponManager : MonoBehaviour
     {
         if (input.SwitchWeaponPressed)
         {
-            SwitchWeapon();
+            playerAnimation.Attack();
+            //backWeapon.SetActive(false);
+            //SwitchWeapon();
         }
     }
 
-    private void SwitchWeapon()
+    public void SwitchWeapon()
     {
         if (currentWeapon == WeaponType.Gun)
+        {
             currentWeapon = WeaponType.Melee;
+            backWeapon.SetActive(true);
+        }
         else
+        {
             currentWeapon = WeaponType.Gun;
+            backWeapon.SetActive(false);
 
+        }
         UpdateWeaponObjects();
     }
 
@@ -62,5 +71,6 @@ public class LocalWeaponManager : MonoBehaviour
     public bool MeleeEquipped()
     {
         return currentWeapon == WeaponType.Melee;
+
     }
 }

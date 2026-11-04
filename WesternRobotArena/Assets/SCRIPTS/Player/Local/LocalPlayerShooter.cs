@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class LocalPlayerShooter : MonoBehaviour
 {
+    [SerializeField] private PlayerAnimation playerAnimation;
     private LocalInputHandler input;
     private LocalWeaponManager weaponManager;
 
@@ -31,6 +32,7 @@ public class LocalPlayerShooter : MonoBehaviour
         if (input.ShootHeld && Time.time >= nextFireTime)
         {
             Shoot();
+            playerAnimation.Shoot();
 
             nextFireTime = Time.time + 1f / fireRate;
         }
