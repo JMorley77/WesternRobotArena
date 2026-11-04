@@ -12,4 +12,9 @@ public class WinSceneUI : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene(mainMenuSceneName);
     }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("Local");
+    }
 }
