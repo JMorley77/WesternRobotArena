@@ -1,4 +1,6 @@
 using System;
+using TMPro;
+
 using UnityEngine;
 
 public class PlayerHealthLocal : MonoBehaviour
@@ -6,6 +8,7 @@ public class PlayerHealthLocal : MonoBehaviour
     [Header("Health Settings")]
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float currentHealth;
+    [SerializeField] private TextMeshProUGUI healthText;
 
     private bool isDead = false;
 
@@ -36,6 +39,8 @@ public class PlayerHealthLocal : MonoBehaviour
             isInvincible = false;
             //Debug.Log(gameObject.name + " is no longer invincible!");
         }
+        if (healthText != null)
+            healthText.text = "Health: " + currentHealth;
     }
 
     public void TakeDamage(float damage)
@@ -66,8 +71,7 @@ public class PlayerHealthLocal : MonoBehaviour
 
         OnPlayerDied?.Invoke(this);
 
-
-        ResetHealth();
+        Destroy(gameObject);
     }
 
     public void ResetHealth()
