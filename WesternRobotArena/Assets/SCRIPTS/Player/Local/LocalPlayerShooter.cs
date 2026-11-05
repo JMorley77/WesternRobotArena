@@ -27,12 +27,15 @@ public class LocalPlayerShooter : MonoBehaviour
     private void Update()
     {
         if (!weaponManager.GunEquipped())
+        {
+            playerAnimation.Shoot(false);
             return;
+        }
 
+        playerAnimation.Shoot(input.ShootHeld);
         if (input.ShootHeld && Time.time >= nextFireTime)
         {
             Shoot();
-            playerAnimation.Shoot();
 
             nextFireTime = Time.time + 1f / fireRate;
         }

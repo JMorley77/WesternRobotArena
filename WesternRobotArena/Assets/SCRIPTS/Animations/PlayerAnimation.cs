@@ -43,15 +43,15 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetTrigger(attackAnimation);
     }
 
-    public void Shoot()
+    public void Shoot(bool shooting)
     {
-        animator.SetTrigger(shootingAnimation);
+        animator.SetBool(shootingAnimation, shooting);
     }
 
     public void ResetAnimations()
     {
         animator.SetFloat(speedParameter, 0f);
         animator.ResetTrigger(attackAnimation);
-        animator.SetTrigger(shootingAnimation);
+        animator.SetBool(shootingAnimation, false);
     }
 }
