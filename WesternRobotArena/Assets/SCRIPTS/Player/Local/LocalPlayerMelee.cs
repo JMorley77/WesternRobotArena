@@ -4,6 +4,8 @@ using System.Collections;
 
 public class LocalPlayerMelee : MonoBehaviour
 {
+    [SerializeField] private PlayerAnimation playerAnimation;
+
     private LocalInputHandler input;
     private LocalWeaponManager weaponManager;
 
@@ -32,13 +34,15 @@ public class LocalPlayerMelee : MonoBehaviour
 
     private void Update()
     {
-        //cant melee while the gun is equipped
+        // Can't melee while the gun is equipped
         if (!weaponManager.MeleeEquipped())
             return;
 
         if (input.ShootPressed && Time.time >= nextAttackTime)
         {
             MeleeAttack();
+
+            playerAnimation.SwordAttack();
 
             nextAttackTime = Time.time + attackCooldown;
         }

@@ -9,6 +9,7 @@ public class PlayerAnimation : MonoBehaviour
     public string speedParameter = "SpeedParameter";
     public string attackAnimation = "AttackAnimation";
     public string shootingAnimation = "Shoot";
+    public string swordAttackAnimation = "SwordAttack";
 
     private void Awake()
     {
@@ -48,10 +49,16 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetBool(shootingAnimation, shooting);
     }
 
+    public void SwordAttack()
+    {
+        animator.SetTrigger(swordAttackAnimation);
+    }
+
     public void ResetAnimations()
     {
         animator.SetFloat(speedParameter, 0f);
         animator.ResetTrigger(attackAnimation);
         animator.SetBool(shootingAnimation, false);
+        animator.ResetTrigger(swordAttackAnimation);
     }
 }
