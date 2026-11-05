@@ -4177,7 +4177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LocalPlayerMelee
   playerAnimation: {fileID: -3494378057051362096}
   meleePoint: {fileID: 8582771509589196477}
-  meleeRange: 1
+  meleeRange: 2
   attackCooldown: 0.9
   meleeDamage: 25
   meleeIndicator: {fileID: 1226399737233616240}
