@@ -40,7 +40,7 @@ public class LocalPlayerMelee : MonoBehaviour
 
         if (input.ShootPressed && Time.time >= nextAttackTime)
         {
-            MeleeAttack();
+            //MeleeAttack();
 
             playerAnimation.SwordAttack();
 
@@ -48,7 +48,7 @@ public class LocalPlayerMelee : MonoBehaviour
         }
     }
 
-    private void MeleeAttack()
+    public void MeleeAttack()
     {
         StartCoroutine(ShowIndicator());
 

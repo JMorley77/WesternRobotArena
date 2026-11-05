@@ -4178,7 +4178,7 @@ MonoBehaviour:
   playerAnimation: {fileID: -3494378057051362096}
   meleePoint: {fileID: 8582771509589196477}
   meleeRange: 1
-  attackCooldown: 0.5
+  attackCooldown: 1
   meleeDamage: 25
   meleeIndicator: {fileID: 1226399737233616240}
 --- !u!114 &-4677456034703497634
