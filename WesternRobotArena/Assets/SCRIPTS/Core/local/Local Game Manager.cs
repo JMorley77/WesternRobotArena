@@ -117,6 +117,7 @@ public class LocalGameManager : MonoBehaviour
             player.transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
 
             spawnedPlayers[i] = player;
+            player.GetComponent<PlayerRespawn>().SetSpawnPoint(spawnPoint);
 
             player.tag = i == 0 ? "TeamRed" : "TeamBlue";
 

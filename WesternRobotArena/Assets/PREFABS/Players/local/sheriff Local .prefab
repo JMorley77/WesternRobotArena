@@ -3925,6 +3925,7 @@ GameObject:
   - component: {fileID: 4912445544512020351}
   - component: {fileID: -4677456034703497634}
   - component: {fileID: 8995647231309678051}
+  - component: {fileID: 8075793672711724784}
   m_Layer: 0
   m_Name: 'sheriff Local '
   m_TagString: TeamBlue
@@ -4210,6 +4211,18 @@ MonoBehaviour:
   playerMovement: {fileID: -4848644434976577099}
   localHealth: {fileID: -1629182071053191200}
   multiplayerHealth: {fileID: 0}
+--- !u!114 &8075793672711724784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5136762054750165817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d9961ed99cbaf4f857d9d304976ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerRespawn
 --- !u!1 &5155214594710718220
 GameObject:
   m_ObjectHideFlags: 0
