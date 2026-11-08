@@ -106,7 +106,7 @@ public class HillZoneLocal : MonoBehaviour
         else if (redTeam)
         {
             Debug.Log("Team Red is controlling the hill!");
-            scoreManager.RedPointIncrease();
+            scoreManager.RedPointIncrease(1);
             yellow.SetActive(false);
             red.SetActive(true);
             blue.SetActive(false);
@@ -115,7 +115,7 @@ public class HillZoneLocal : MonoBehaviour
         else if (blueTeam)
         {
             Debug.Log("Team Blue is controlling the hill!");
-            scoreManager.BluePointIncrease();
+            scoreManager.BluePointIncrease(1);
             yellow.SetActive(false);
             red.SetActive(false);
             blue.SetActive(true);

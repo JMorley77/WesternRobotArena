@@ -42,23 +42,23 @@ public class ScoreManagerLocal : MonoBehaviour
 
     #region Point System
 
-    public void RedPointIncrease()
+    public void RedPointIncrease(int points)
     {
         if (gameEnded)
             return;
 
-        redPoints++;
+        redPoints += points;
 
         UpdateScoreUI();
         CheckEndGame();
     }
 
-    public void BluePointIncrease()
+    public void BluePointIncrease(int points)
     {
         if (gameEnded)
             return;
 
-        bluePoints++;
+        bluePoints += points;
 
         UpdateScoreUI();
         CheckEndGame();

@@ -9,19 +9,19 @@ public class Sandstorm : MonoBehaviour
 
     public void Awake()
     {
-        eventTime = Time.deltaTime;
+        eventTime = 0f;
     }
-    public void Update()
+    public void FixedUpdate()
     {
-        eventTime++;
-        if(eventTime >= 6000f)
+        eventTime+=Time.deltaTime;
+        if (eventTime >= 120f)
         {
             tornado.SetActive(true);
             dustParticle.SetActive(true);
 
         }
 
-        if (eventTime >= 10000f)
+        if (eventTime >= 140f)
         {
             tornado.SetActive(false);
             dustParticle.SetActive(false);

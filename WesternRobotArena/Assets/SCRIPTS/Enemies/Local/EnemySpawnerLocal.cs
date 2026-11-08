@@ -94,10 +94,10 @@ public class EnemySpawnerLocal : MonoBehaviour
             {
                 enemyController.SetTarget(targetPlayer);
             }
-            else
-            {
-                Debug.LogError("Enemy prefab is missing EnemyControllerLocal!");
-            }
+
+            int playerIndex = targetPlayer == gameManager.GetPlayer(0).transform ? 0 : 1;
+
+            enemyObject.GetComponent<EnemyHealthLocal>().SetTargetPlayer(playerIndex);
         }
     }
 }

@@ -5,9 +5,12 @@ public class EnemyHealthLocal : MonoBehaviour
     [Header("Enemy Stats")]
     [SerializeField] private EnemyStats enemyStats;
 
+    [Header("Game Manager")]
+    [SerializeField] private LocalGameManager gameManager;
+    [SerializeField] private ScoreManagerLocal  scoreManager;
     private float currentHealth;
     private bool isDead;
-
+    private int targetPlayer;
     public float CurrentHealth => currentHealth;
     public bool IsDead => isDead;
 
@@ -20,9 +23,15 @@ public class EnemyHealthLocal : MonoBehaviour
             return;
         }
 
+        gameManager = FindFirstObjectByType<LocalGameManager>();
+        scoreManager = FindFirstObjectByType<ScoreManagerLocal>();
+
         currentHealth = enemyStats.maxHealth;
     }
-
+    public void SetTargetPlayer(int player)
+    {
+        targetPlayer = player;
+    }
     public void TakeDamage(float damage)
     {
         if (isDead || damage <= 0f)
@@ -44,6 +53,11 @@ public class EnemyHealthLocal : MonoBehaviour
         isDead = true;
 
         Debug.Log(enemyStats.AIName + " Enemy Died");
+
+        if (targetPlayer == 0)
+            scoreManager.RedPointIncrease(enemyStats.rewardValue);
+        else
+            scoreManager.BluePointIncrease(enemyStats.rewardValue);
 
         Destroy(gameObject);
     }

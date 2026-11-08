@@ -70,6 +70,7 @@ public class PlayerHealthLocal : MonoBehaviour
         Debug.Log(gameObject.name + " died!");
 
         OnPlayerDied?.Invoke(this);
+
     }
 
     public void ResetHealth()
