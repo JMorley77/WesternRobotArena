@@ -66,10 +66,11 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetTrigger(swordAttackAnimation);
     }
 
-    public void SetMovement(float direction, float speed)
+    public void SetMovement(float direction, float forward, float speed)
     {
         animator.SetFloat("Direction", direction);
         animator.SetFloat("Speed", speed);
+        animator.SetFloat("Forward", forward);
     }
     public void ResetAnimations()
     {
