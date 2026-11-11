@@ -649,7 +649,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -711, y: -379}
+  m_AnchoredPosition: {x: -715, y: -379}
   m_SizeDelta: {x: 494, y: 323}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &252974091
@@ -2488,6 +2488,7 @@ GameObject:
   - component: {fileID: 1165270840}
   - component: {fileID: 1165270842}
   - component: {fileID: 1165270841}
+  - component: {fileID: 1165270843}
   m_Layer: 5
   m_Name: Robot
   m_TagString: Untagged
@@ -2552,6 +2553,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1165270839}
   m_CullTransparentMesh: 1
+--- !u!95 &1165270843
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165270839}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 364308856cdf1dd4a8c12cb5a863a483, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1168612806
 GameObject:
   m_ObjectHideFlags: 0
@@ -3319,6 +3342,7 @@ GameObject:
   - component: {fileID: 1415434710}
   - component: {fileID: 1415434712}
   - component: {fileID: 1415434711}
+  - component: {fileID: 1415434713}
   m_Layer: 5
   m_Name: Sheriff
   m_TagString: Untagged
@@ -3383,6 +3407,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415434709}
   m_CullTransparentMesh: 1
+--- !u!95 &1415434713
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415434709}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7a3591de4f47f1c43b6e7aa163a6e69a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1453865065
 GameObject:
   m_ObjectHideFlags: 0
