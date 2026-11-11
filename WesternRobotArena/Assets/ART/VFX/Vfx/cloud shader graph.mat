@@ -53,15 +53,15 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _alphaclip: 0.1
-    - _cloudsalpha: 164.2
-    - _cloudscale: 10.4
-    - _cloudspower: 2
+    - _alphaclip: 0.13
+    - _cloudsalpha: 76.14
+    - _cloudscale: 2.3
+    - _cloudspower: 0.75
     - _distoratscale: 60
     - _distoratspeed: 0.01
     - _vertexoffset: 0.05
     m_Colors:
-    - _cloudscolor: {r: 4.9245768, g: 2.1281118, b: 0, a: 0.3921569}
+    - _cloudscolor: {r: 6.707517, g: 0, b: 0, a: 0.3921569}
     - _cloudspeed: {r: 0.002, g: 0.005, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
