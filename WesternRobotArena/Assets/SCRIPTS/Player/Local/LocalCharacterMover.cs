@@ -33,18 +33,27 @@ public class LocalCharacterMover : MonoBehaviour
         MoveTowardTarget(targetVector);
 
         // Animation
-        if (targetVector.magnitude < 0.1f)
+        Vector3 worldMovement =Quaternion.Euler(0, camera.transform.eulerAngles.y, 0) * targetVector;
+
+        Vector3 localMovement =transform.InverseTransformDirection(worldMovement);
+
+        float direction = 0f;
+        float speed = 0f;
+
+        if (targetVector.magnitude > 0.1f)
         {
-            playerAnimation.Idle();
+            direction = localMovement.x;
+
+            if (Keyboard.current.leftShiftKey.isPressed)
+                speed = 1f;
+            else
+                speed = 0.5f;
         }
-        else if (Keyboard.current.leftShiftKey.isPressed)
-        {
-            playerAnimation.Run();
-        }
-        else
-        {
-            playerAnimation.Walk();
-        }
+
+        playerAnimation.SetMovement(direction, speed);
+
+
+
 
         // aiming
         if (input.UsingKeyboardMouse)
@@ -100,6 +109,8 @@ public class LocalCharacterMover : MonoBehaviour
                 return;
 
             Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
         }
