@@ -9,6 +9,8 @@ public class PlayerHealthLocal : MonoBehaviour
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float currentHealth;
     [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private PlayerAnimation playerAnimation;
+    private LocalCharacterMover character;
 
     private bool isDead = false;
 
@@ -25,6 +27,8 @@ public class PlayerHealthLocal : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        character = GetComponent<LocalCharacterMover>();
+
     }
 
     void Update()
@@ -63,13 +67,12 @@ public class PlayerHealthLocal : MonoBehaviour
     {
         if (isDead)
             return;
-
+        if (character != null) character.enabled = false;
         isDead = true;
         currentHealth = 0f;
-
+        playerAnimation.Die();
         Debug.Log(gameObject.name + " died!");
 
-        OnPlayerDied?.Invoke(this);
 
     }
 
@@ -77,6 +80,8 @@ public class PlayerHealthLocal : MonoBehaviour
     {
         currentHealth = maxHealth;
         isDead = false;
+        if (character != null) character.enabled = true;
+
     }
     public void Heal(float amount)
     {

@@ -25,14 +25,11 @@ public class PlayerRespawn : MonoBehaviour
         spawnPoint = point;
     }
 
-    private void Respawn(PlayerHealthLocal h)
+    public void Respawn(PlayerHealthLocal h)
     {
-        CharacterController cc = GetComponent<CharacterController>();
-        if (cc != null) cc.enabled = false;
+
 
         transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
-
-        if (cc != null) cc.enabled = true;
 
         health.ResetHealth();
     }

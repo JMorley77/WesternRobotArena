@@ -12,6 +12,7 @@ public class PlayerAnimation : MonoBehaviour
     public string attackAnimation = "AttackAnimation";
     public string shootingAnimation = "Shoot";
     public string swordAttackAnimation = "SwordAttack";
+    public string deathAnimation = "IsDead";
 
     private void Awake()
     {
@@ -66,6 +67,10 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetTrigger(swordAttackAnimation);
     }
 
+    public void Die()
+    {
+        animator.SetTrigger(deathAnimation);
+    }
     public void SetMovement(float direction, float forward, float speed)
     {
         animator.SetFloat("Direction", direction);
