@@ -4059,6 +4059,7 @@ MonoBehaviour:
   maxHealth: 400
   currentHealth: 0
   healthText: {fileID: 3774900497938387651, guid: 5918ba4fc00ad454ba2047fa4d3f19a9, type: 3}
+  playerAnimation: {fileID: -3494378057051362096}
 --- !u!114 &-3494378057051362096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4077,6 +4078,7 @@ MonoBehaviour:
   attackAnimation: Attack
   shootingAnimation: Shoot
   swordAttackAnimation: SwordAttack
+  deathAnimation: IsDead
 --- !u!114 &-2649747419248359133
 MonoBehaviour:
   m_ObjectHideFlags: 0

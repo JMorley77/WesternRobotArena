@@ -39,10 +39,12 @@ public class LocalCharacterMover : MonoBehaviour
 
         float direction = 0f;
         float speed = 0f;
+        float forward = 0f;
 
         if (targetVector.magnitude > 0.1f)
         {
             direction = localMovement.x;
+            forward = localMovement.z;
 
             if (Keyboard.current.leftShiftKey.isPressed || Gamepad.current.leftStickButton.isPressed)
                 speed = 1f;
@@ -50,7 +52,7 @@ public class LocalCharacterMover : MonoBehaviour
                 speed = 0.5f;
         }
 
-        playerAnimation.SetMovement(direction, speed);
+        playerAnimation.SetMovement(direction, forward, speed);
 
 
 
