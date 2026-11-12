@@ -12,7 +12,7 @@ public class LocalBullet : MonoBehaviour
     private float lifeTime = 3f;
 
     [SerializeField]
-    private float bulletDamage = 20f;
+    public float bulletDamage = 20f;
 
     private GameObject owner;
     private float lifeTimer;

@@ -19,7 +19,7 @@ public class LocalPlayerMelee : MonoBehaviour
     private float attackCooldown = 0.5f;
 
     [SerializeField]
-    private float meleeDamage = 25f;
+    public float meleeDamage = 25f;
 
     [SerializeField]
     private GameObject meleeIndicator;

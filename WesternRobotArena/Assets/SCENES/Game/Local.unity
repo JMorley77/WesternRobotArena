@@ -5757,6 +5757,7 @@ MonoBehaviour:
   powerUpPrefabs:
   - {fileID: 20315341621470302, guid: fd82b907040c4c74dbb5ba43bb4c38cf, type: 3}
   - {fileID: 20315341621470302, guid: 617cfab795e21ac4ab9bc2c7a7b51a8b, type: 3}
+  - {fileID: 20315341621470302, guid: 7b26a87a78088844ab74bcd16ea95a25, type: 3}
   spawnPoints:
   - {fileID: 930834409}
   - {fileID: 2007406676}
