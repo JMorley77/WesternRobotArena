@@ -44,7 +44,7 @@ public class LocalCharacterMover : MonoBehaviour
         {
             direction = localMovement.x;
 
-            if (Keyboard.current.leftShiftKey.isPressed)
+            if (Keyboard.current.leftShiftKey.isPressed || Gamepad.current.leftStickButton.isPressed)
                 speed = 1f;
             else
                 speed = 0.5f;
