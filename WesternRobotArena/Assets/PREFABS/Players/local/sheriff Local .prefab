@@ -4059,6 +4059,7 @@ MonoBehaviour:
   maxHealth: 400
   currentHealth: 0
   healthText: {fileID: 3774900497938387651, guid: 5918ba4fc00ad454ba2047fa4d3f19a9, type: 3}
+  playerAnimation: {fileID: -3494378057051362096}
 --- !u!114 &-3494378057051362096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4073,9 +4074,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimation
   animator: {fileID: -102328995662632648}
   speedParameter: Speed
+  DirectionAnimation: Direction
   attackAnimation: Attack
   shootingAnimation: Shoot
   swordAttackAnimation: SwordAttack
+  deathAnimation: IsDead
 --- !u!114 &-2649747419248359133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4212,6 +4215,8 @@ MonoBehaviour:
   playerMovement: {fileID: -4848644434976577099}
   localHealth: {fileID: -1629182071053191200}
   multiplayerHealth: {fileID: 0}
+  playerMelee: {fileID: 4912445544512020351}
+  bullet: {fileID: 7520147017046042344, guid: 6a53a81731125ec4ea4aa0cf10e2e851, type: 3}
 --- !u!114 &8075793672711724784
 MonoBehaviour:
   m_ObjectHideFlags: 0
