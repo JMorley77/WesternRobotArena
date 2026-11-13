@@ -1,4 +1,3 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
@@ -73,9 +72,14 @@ public class PlayerAnimation : MonoBehaviour
     }
     public void SetMovement(float direction, float forward, float speed)
     {
-        animator.SetFloat("Direction", direction);
-        animator.SetFloat("Speed", speed);
-        animator.SetFloat("Forward", forward);
+        animator.SetFloat("Direction", direction, 0.05f, Time.deltaTime);
+        animator.SetFloat("Forward", forward, 0.05f, Time.deltaTime);
+        animator.SetFloat("Speed", speed, 0.05f, Time.deltaTime);
+    }
+
+    public void SetLocomotionSpeed(float multiplier)
+    {
+        animator.SetFloat("LocoSpeed", multiplier, 0.1f, Time.deltaTime);
     }
     public void ResetAnimations()
     {

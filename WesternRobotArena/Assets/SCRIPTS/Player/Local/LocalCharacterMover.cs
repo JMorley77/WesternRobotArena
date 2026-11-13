@@ -12,8 +12,12 @@ public class LocalCharacterMover : MonoBehaviour
 
     [SerializeField] public float moveSpeed;
     [SerializeField] private float rotateSpeed;
+    [SerializeField, Range(0.1f, 1f)] private float walkRatio = 0.5f;
+    [SerializeField] private float clipNaturalSpeed = 4.5f;
 
-    private Camera camera;
+
+
+    private Camera cam;
 
     private void Awake()
     {
@@ -22,57 +26,42 @@ public class LocalCharacterMover : MonoBehaviour
 
     private void Update()
     {
-        if (camera == null)
-            camera = Camera.main;
+        if (cam == null) cam = Camera.main;
+        if (cam == null) return;
 
-        if (camera == null)
-            return;
+        // Clamp so diagonals aren't faster, keep analog partial tilt
+        Vector2 raw = input.InputVector;
+        Vector3 targetVector = Vector3.ClampMagnitude(new Vector3(raw.x, 0f, raw.y), 1f);
+        if (targetVector.magnitude < 0.1f) targetVector = Vector3.zero;
 
-        Vector3 targetVector = new Vector3(input.InputVector.x, 0f, input.InputVector.y);
+        Vector3 worldMovement = Quaternion.Euler(0, cam.transform.eulerAngles.y, 0) * targetVector;
 
-        MoveTowardTarget(targetVector);
+        bool running =
+            (Keyboard.current != null && Keyboard.current.leftShiftKey.isPressed) ||
+            (Gamepad.current != null && Gamepad.current.leftStickButton.isPressed);
 
-        // Animation
-        Vector3 worldMovement =Quaternion.Euler(0, camera.transform.eulerAngles.y, 0) * targetVector;
+        float speedRatio = running ? 1f : walkRatio;
+        float actualSpeed = moveSpeed * speedRatio * worldMovement.magnitude;
+        float multiplier = actualSpeed > 0.1f ? actualSpeed / clipNaturalSpeed : 1f;
+        playerAnimation.SetLocomotionSpeed(Mathf.Clamp(multiplier, 1f, 1.6f));
 
-        Vector3 localMovement =transform.InverseTransformDirection(worldMovement);
+        // Move at the same speed the animation is told about
+        transform.position += worldMovement * (moveSpeed * speedRatio * Time.deltaTime);
 
-        float direction = 0f;
-        float speed = 0f;
-        float forward = 0f;
+        // Animation: local-space velocity as a fraction of run speed
+        Vector3 localMovement = transform.InverseTransformDirection(worldMovement) * speedRatio;
+        playerAnimation.SetMovement(localMovement.x, localMovement.z, localMovement.magnitude);
 
-        if (targetVector.magnitude > 0.1f)
-        {
-            direction = localMovement.x;
-            forward = localMovement.z;
-
-            if (Keyboard.current.leftShiftKey.isPressed || Gamepad.current.leftStickButton.isPressed)
-                speed = 1f;
-            else
-                speed = 0.5f;
-        }
-
-        playerAnimation.SetMovement(direction, forward, speed);
-
-
-
-
-        // aiming
-        if (input.UsingKeyboardMouse)
-        {
-            RotateTowardMouse();
-        }
-        else
-        {
-            RotateTowardControllerAim();
-        }
+        // Aiming
+        if (input.UsingKeyboardMouse) RotateTowardMouse();
+        else RotateTowardControllerAim();
     }
 
     private void MoveTowardTarget(Vector3 targetVector)
     {
         var speed = moveSpeed * Time.deltaTime;
 
-        targetVector = Quaternion.Euler(0, camera.transform.eulerAngles.y, 0) * targetVector;
+        targetVector = Quaternion.Euler(0, cam.transform.eulerAngles.y, 0) * targetVector;
 
         var targetPosition = transform.position + targetVector * speed;
 
@@ -88,7 +77,7 @@ public class LocalCharacterMover : MonoBehaviour
 
         Vector3 aimDirection = new Vector3(aimInput.x, 0, aimInput.y);
 
-        aimDirection = Quaternion.Euler(0, camera.transform.eulerAngles.y, 0) * aimDirection;
+        aimDirection = Quaternion.Euler(0, cam.transform.eulerAngles.y, 0) * aimDirection;
 
         Quaternion targetRotation = Quaternion.LookRotation(aimDirection);
 
@@ -97,7 +86,7 @@ public class LocalCharacterMover : MonoBehaviour
 
     private void RotateTowardMouse()
     {
-        Ray ray = camera.ScreenPointToRay(input.MousePosition);
+        Ray ray = cam.ScreenPointToRay(input.MousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo, 300f))
         {
