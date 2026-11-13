@@ -51,6 +51,9 @@ public class PowerUpCollect : MonoBehaviour
             return;
         }
 
+        // PLay Pickup Animation
+        GetComponent<PlayerAnimation>().Pickup();
+
         // Find the PowerUp component on the power up object to get the power up data
         PowerUp pickup = powerUp.GetComponentInParent<PowerUp>();
 

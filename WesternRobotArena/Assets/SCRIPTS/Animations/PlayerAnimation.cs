@@ -12,6 +12,7 @@ public class PlayerAnimation : MonoBehaviour
     public string shootingAnimation = "Shoot";
     public string swordAttackAnimation = "SwordAttack";
     public string deathAnimation = "IsDead";
+    public string pickupAnimation = "Pickup";
 
     private void Awake()
     {
@@ -49,6 +50,11 @@ public class PlayerAnimation : MonoBehaviour
     public void SetMovementSpeed(float speed)
     {
         animator.SetFloat(speedParameter, speed);
+    }
+
+    public void Pickup()
+    {
+        animator.SetTrigger(pickupAnimation);
     }
 
     public void Attack()
