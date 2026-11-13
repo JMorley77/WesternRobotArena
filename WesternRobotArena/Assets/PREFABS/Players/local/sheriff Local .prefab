@@ -4136,10 +4136,8 @@ MonoBehaviour:
   playerAnimation: {fileID: -3494378057051362096}
   moveSpeed: 8
   rotateSpeed: 900
-  walkRatio: 0.7
+  walkRatio: 0.65
   clipNaturalSpeed: 6.5
-  strafeSpeedMultiplier: 0.65
-  backwardSpeedMultiplier: 0.65
 --- !u!114 &-3181114217335172060
 MonoBehaviour:
   m_ObjectHideFlags: 0
