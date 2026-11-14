@@ -29,28 +29,44 @@ public class LocalCharacterMover : MonoBehaviour
         if (cam == null) cam = Camera.main;
         if (cam == null) return;
 
-        // Clamp so diagonals aren't faster, keep analog partial tilt
         Vector2 raw = input.InputVector;
         Vector3 targetVector = Vector3.ClampMagnitude(new Vector3(raw.x, 0f, raw.y), 1f);
-        if (targetVector.magnitude < 0.1f) targetVector = Vector3.zero;
+        if (targetVector.magnitude < 0.1f) 
+            targetVector = Vector3.zero;
 
         Vector3 worldMovement = Quaternion.Euler(0, cam.transform.eulerAngles.y, 0) * targetVector;
+
 
         bool running =
             (Keyboard.current != null && Keyboard.current.leftShiftKey.isPressed) ||
             (Gamepad.current != null && Gamepad.current.leftStickButton.isPressed);
 
         float speedRatio = running ? 1f : walkRatio;
-        float actualSpeed = moveSpeed * speedRatio * worldMovement.magnitude;
-        float multiplier = actualSpeed > 0.1f ? actualSpeed / clipNaturalSpeed : 1f;
-        playerAnimation.SetLocomotionSpeed(Mathf.Clamp(multiplier, 1f, 1.6f));
 
-        // Move at the same speed the animation is told about
+
         transform.position += worldMovement * (moveSpeed * speedRatio * Time.deltaTime);
 
-        // Animation: local-space velocity as a fraction of run speed
-        Vector3 localMovement = transform.InverseTransformDirection(worldMovement) * speedRatio;
-        playerAnimation.SetMovement(localMovement.x, localMovement.z, localMovement.magnitude);
+        float actualSpeed = moveSpeed * speedRatio * worldMovement.magnitude;
+
+
+        float animationMultiplier = actualSpeed / clipNaturalSpeed;
+
+        if (actualSpeed < 0.1f)
+            animationMultiplier = 1f;
+        else
+            animationMultiplier = Mathf.Clamp(animationMultiplier, 0.1f, 2f);
+
+        playerAnimation.SetLocomotionSpeed(animationMultiplier);
+
+
+        Vector3 localMovement = transform.InverseTransformDirection(worldMovement);
+
+        float direction = localMovement.x * speedRatio;
+        float forward = localMovement.z * speedRatio;
+
+        float movementAmount = localMovement.magnitude * speedRatio;
+
+        playerAnimation.SetMovement(direction, forward, movementAmount);
 
         // Aiming
         if (input.UsingKeyboardMouse) RotateTowardMouse();

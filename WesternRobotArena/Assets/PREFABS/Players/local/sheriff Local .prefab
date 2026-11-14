@@ -4079,6 +4079,7 @@ MonoBehaviour:
   shootingAnimation: Shoot
   swordAttackAnimation: SwordAttack
   deathAnimation: IsDead
+  pickupAnimation: Pickup
 --- !u!114 &-2649747419248359133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4136,8 +4137,8 @@ MonoBehaviour:
   playerAnimation: {fileID: -3494378057051362096}
   moveSpeed: 8
   rotateSpeed: 900
-  walkRatio: 0.65
-  clipNaturalSpeed: 6.5
+  walkRatio: 0.6
+  clipNaturalSpeed: 8
 --- !u!114 &-3181114217335172060
 MonoBehaviour:
   m_ObjectHideFlags: 0
