@@ -4081,11 +4081,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b46e66ba8b4568143b9eae73e15ea922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocalPlayerShooter
-  playerAnimation: {fileID: -3494378057051362096}
   bulletPrefab: {fileID: 3742496411736017564, guid: 6a53a81731125ec4ea4aa0cf10e2e851, type: 3}
   gun: {fileID: 7324513186047507015}
   fireRate: 5
+  magSize: 5
+  currentAmmo: 5
+  reloadTime: 2
+  playerAnimation: {fileID: -3494378057051362096}
   rifleShootSound: {fileID: 8300000, guid: e183f79f902bdd04191a48e539fbd100, type: 3}
+  reloadSound: {fileID: 8300000, guid: 2feeea9db02aa1e4592955d2bb4b6a46, type: 3}
+  emptyMagSound: {fileID: 8300000, guid: d5bcc1af3a53688448ad4dfccc6ebfda, type: 3}
 --- !u!114 &4912445544512020351
 MonoBehaviour:
   m_ObjectHideFlags: 0

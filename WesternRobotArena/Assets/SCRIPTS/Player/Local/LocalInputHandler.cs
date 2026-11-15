@@ -21,6 +21,8 @@ public class LocalInputHandler : MonoBehaviour
 
     public bool PausePressed { get; private set; }
 
+    public bool ReloadPressed { get; private set; }
+
     private PlayerInput playerInput;
 
     private InputAction moveAction;
@@ -35,6 +37,8 @@ public class LocalInputHandler : MonoBehaviour
 
     private InputAction pauseAction;
 
+    private InputAction reloadAction;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -46,6 +50,7 @@ public class LocalInputHandler : MonoBehaviour
         switchWeaponAction = playerInput.actions["SwitchWeapon"];
         interactAction = playerInput.actions["Interact"];
         pauseAction = playerInput.actions["Pause"];
+        reloadAction = playerInput.actions["Reload"];
     }
 
     private void Update()
@@ -59,6 +64,7 @@ public class LocalInputHandler : MonoBehaviour
         SwitchWeaponPressed = switchWeaponAction.WasPressedThisFrame();
         InteractPressed = interactAction.WasPressedThisFrame();
         PausePressed = pauseAction.WasPressedThisFrame();
+        ReloadPressed = reloadAction.WasPressedThisFrame();
 
         UsingKeyboardMouse = playerInput.currentControlScheme == "Keyboard&Mouse";
     }

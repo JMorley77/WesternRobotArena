@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LocalPlayerShooter : MonoBehaviour
 {
@@ -16,11 +17,22 @@ public class LocalPlayerShooter : MonoBehaviour
     private float fireRate = 5f;
 
     private float nextFireTime;
+
+    [Header("Ammo")]
+    [SerializeField] private int magSize = 5;
+    [SerializeField] private int currentAmmo = 5;
+    //[SerializeField] private int reloadTime = 2;
+
+    private bool isReloading;
+    private float reloadTimer;
+
     [Header("Animation")]
     [SerializeField] private PlayerAnimation playerAnimation;
 
     [Header("Audio")]
     [SerializeField] private AudioClip rifleShootSound;
+    [SerializeField] private AudioClip reloadSound;
+    [SerializeField] private AudioClip emptyMagSound;
     private AudioSource audioSource;
 
     private void Awake()
@@ -32,6 +44,27 @@ public class LocalPlayerShooter : MonoBehaviour
 
     private void Update()
     {
+        if (isReloading)
+        {
+            if (Time.time >= reloadTimer)
+            {
+                currentAmmo = magSize;
+                isReloading = false;
+            }
+            return;
+        }
+
+        if (input.ReloadPressed)
+        {
+            if (currentAmmo < magSize)
+            {
+                isReloading = true;
+                reloadTimer = Time.time + reloadSound.length;
+                audioSource.PlayOneShot(reloadSound);
+            }
+            return;
+        }
+        
         if (!weaponManager.GunEquipped())
         {
             playerAnimation.Shoot(false);
@@ -41,11 +74,23 @@ public class LocalPlayerShooter : MonoBehaviour
         playerAnimation.Shoot(input.ShootHeld);
         if (input.ShootHeld && Time.time >= nextFireTime)
         {
-            //Shoot();
-            // Delay the shooting to sync with the animation
-            Invoke(nameof(Shoot), 0.3f);
+            if (currentAmmo > 0)
+            {
+                // Delay the shooting to sync with the animation
+                Invoke(nameof(Shoot), 0.3f);
+                //Shoot();
 
-            nextFireTime = Time.time + 1f / fireRate;
+                currentAmmo--;
+
+                nextFireTime = Time.time + 1f / fireRate;
+            }
+            else
+            {
+                audioSource.PlayOneShot(emptyMagSound);
+
+                nextFireTime = Time.time + 1f / fireRate;
+            }
+
         }
     }
 
