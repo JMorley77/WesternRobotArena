@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class LocalPlayerShooter : MonoBehaviour
 {
-    [SerializeField] private PlayerAnimation playerAnimation;
     private LocalInputHandler input;
     private LocalWeaponManager weaponManager;
 
@@ -17,11 +16,18 @@ public class LocalPlayerShooter : MonoBehaviour
     private float fireRate = 5f;
 
     private float nextFireTime;
+    [Header("Animation")]
+    [SerializeField] private PlayerAnimation playerAnimation;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip rifleShootSound;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         input = GetComponent<LocalInputHandler>();
         weaponManager = GetComponent<LocalWeaponManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -35,7 +41,9 @@ public class LocalPlayerShooter : MonoBehaviour
         playerAnimation.Shoot(input.ShootHeld);
         if (input.ShootHeld && Time.time >= nextFireTime)
         {
-            Shoot();
+            //Shoot();
+            // Delay the shooting to sync with the animation
+            Invoke(nameof(Shoot), 0.3f);
 
             nextFireTime = Time.time + 1f / fireRate;
         }
@@ -44,6 +52,9 @@ public class LocalPlayerShooter : MonoBehaviour
     private void Shoot()
     {
         var bullet = Instantiate(bulletPrefab, gun.position, gun.rotation);
+        
+        audioSource.PlayOneShot(rifleShootSound);
+        audioSource.volume = 0.3f;
 
         var bulletScript = bullet.GetComponent<LocalBullet>();
         bulletScript.SetOwner(gameObject);

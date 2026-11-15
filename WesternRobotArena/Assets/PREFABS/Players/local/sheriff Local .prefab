@@ -3838,6 +3838,7 @@ GameObject:
   - component: {fileID: 8075793672711724784}
   - component: {fileID: 185212371193490343}
   - component: {fileID: 7149077820510791506}
+  - component: {fileID: -3802296687649073108}
   m_Layer: 0
   m_Name: 'sheriff Local '
   m_TagString: TeamBlue
@@ -3971,6 +3972,8 @@ MonoBehaviour:
   currentHealth: 0
   healthText: {fileID: 3774900497938387651, guid: 5918ba4fc00ad454ba2047fa4d3f19a9, type: 3}
   playerAnimation: {fileID: -3494378057051362096}
+  hitSound: {fileID: 8300000, guid: 69afddc128a5d1d48ab21b21f9e4e26d, type: 3}
+  deathSound: {fileID: 8300000, guid: 3c9ce4e16cab5794498d4a372a51fff0, type: 3}
 --- !u!114 &-3494378057051362096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4082,6 +4085,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3742496411736017564, guid: 6a53a81731125ec4ea4aa0cf10e2e851, type: 3}
   gun: {fileID: 7324513186047507015}
   fireRate: 5
+  rifleShootSound: {fileID: 8300000, guid: e183f79f902bdd04191a48e539fbd100, type: 3}
 --- !u!114 &4912445544512020351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4171,6 +4175,103 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SlashEffect
   slashTrail: {fileID: 2542150899028953763}
   slashDuration: 0.2
+--- !u!82 &-3802296687649073108
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5136762054750165817}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5155214594710718220
 GameObject:
   m_ObjectHideFlags: 0

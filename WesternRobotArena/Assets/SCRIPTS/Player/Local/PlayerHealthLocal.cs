@@ -12,6 +12,11 @@ public class PlayerHealthLocal : MonoBehaviour
     [SerializeField] private PlayerAnimation playerAnimation;
     private LocalCharacterMover character;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip hitSound;
+    [SerializeField] private AudioClip deathSound;
+    private AudioSource audioSource;
+
     private bool isDead = false;
 
     public float CurrentHealth => currentHealth;
@@ -28,6 +33,7 @@ public class PlayerHealthLocal : MonoBehaviour
     {
         currentHealth = maxHealth;
         character = GetComponent<LocalCharacterMover>();
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -41,8 +47,8 @@ public class PlayerHealthLocal : MonoBehaviour
         if (invincibilityTimer <= 0)
         {
             isInvincible = false;
-            //Debug.Log(gameObject.name + " is no longer invincible!");
         }
+
         if (healthText != null)
             healthText.text = "Health: " + currentHealth;
     }
@@ -54,7 +60,8 @@ public class PlayerHealthLocal : MonoBehaviour
 
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0f);
-
+        
+        audioSource.PlayOneShot(hitSound);
         Debug.Log(gameObject.name + " Health: " + currentHealth);
 
         if (currentHealth <= 0f)
@@ -71,6 +78,7 @@ public class PlayerHealthLocal : MonoBehaviour
         isDead = true;
         currentHealth = 0f;
         playerAnimation.Die();
+        audioSource.PlayOneShot(deathSound);
         Debug.Log(gameObject.name + " died!");
 
 

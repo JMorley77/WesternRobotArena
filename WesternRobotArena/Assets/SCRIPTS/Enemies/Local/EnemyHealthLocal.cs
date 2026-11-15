@@ -8,6 +8,12 @@ public class EnemyHealthLocal : MonoBehaviour
     [Header("Game Manager")]
     [SerializeField] private LocalGameManager gameManager;
     [SerializeField] private ScoreManagerLocal  scoreManager;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip hitSound;
+    [SerializeField] private AudioClip deathSound;
+    private AudioSource audioSource;
+    private EnemyControllerLocal enemyController;
     private float currentHealth;
     private bool isDead;
     private int targetPlayer;
@@ -25,7 +31,8 @@ public class EnemyHealthLocal : MonoBehaviour
 
         gameManager = FindFirstObjectByType<LocalGameManager>();
         scoreManager = FindFirstObjectByType<ScoreManagerLocal>();
-
+        audioSource = GetComponent<AudioSource>();
+        enemyController = GetComponent<EnemyControllerLocal>();
         currentHealth = enemyStats.maxHealth;
     }
     public void SetTargetPlayer(int player)
@@ -39,6 +46,9 @@ public class EnemyHealthLocal : MonoBehaviour
 
         currentHealth = Mathf.Max(currentHealth - damage, 0f);
 
+        // Play hit sound
+        audioSource.PlayOneShot(hitSound);
+
         Debug.Log("Enemy Health: " + currentHealth);
 
         if (currentHealth <= 0f)
@@ -50,7 +60,13 @@ public class EnemyHealthLocal : MonoBehaviour
         if (isDead)
             return;
 
+        // Play death sound
+        audioSource.PlayOneShot(deathSound);
+
         isDead = true;
+
+        // Stop the enemys movement
+        enemyController.Die();
 
         Debug.Log(enemyStats.AIName + " Enemy Died");
 
@@ -59,6 +75,6 @@ public class EnemyHealthLocal : MonoBehaviour
         else
             scoreManager.BluePointIncrease(enemyStats.rewardValue);
 
-        Destroy(gameObject);
+        Destroy(gameObject, deathSound.length);
     }
 }

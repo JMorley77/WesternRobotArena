@@ -3064,6 +3064,9 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthText: {fileID: 0}
+  playerAnimation: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: b4449e7b708cd0a4aa52ef9ff1d9711a, type: 3}
+  deathSound: {fileID: 8300000, guid: 481daf00583884440915329bd728a193, type: 3}
 --- !u!114 &7533670536303410990
 MonoBehaviour:
   m_ObjectHideFlags: 0

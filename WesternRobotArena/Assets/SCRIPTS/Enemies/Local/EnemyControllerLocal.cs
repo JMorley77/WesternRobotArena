@@ -117,6 +117,6 @@ public class EnemyControllerLocal : MonoBehaviour
 
         StopMoving();
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }
