@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6730275204157639548}
   - component: {fileID: 8374497576475453044}
   - component: {fileID: 7697575579878103673}
-  - component: {fileID: 7160697873449689375}
   - component: {fileID: 1350877131868544868}
   - component: {fileID: 6966754356366524921}
   - component: {fileID: -3139632866678839803}
@@ -97,29 +96,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7160697873449689375
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7614365539049271289}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1350877131868544868
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -156,7 +132,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7614365539049271289}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -165,7 +141,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1.5
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -361,7 +337,9 @@ PrefabInstance:
       value: 'Wolf '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4508836741120336292, guid: 26098424da880934d8558afc1448e11e, type: 3}
+    - {fileID: 6313362504015422185, guid: 26098424da880934d8558afc1448e11e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26098424da880934d8558afc1448e11e, type: 3}
