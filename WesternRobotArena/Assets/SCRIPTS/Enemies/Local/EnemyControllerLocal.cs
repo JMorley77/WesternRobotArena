@@ -5,7 +5,7 @@ public class EnemyControllerLocal : MonoBehaviour
 {
     public enum EnemyState
     {
-        Idle,
+        Wandering,
         Chasing,
         Attacking,
         Dead
@@ -14,10 +14,18 @@ public class EnemyControllerLocal : MonoBehaviour
     [Header("Enemy Stats")]
     [SerializeField] private EnemyStats enemyStats;
 
+    [Header("Behaviour")]
+    [SerializeField] private float detectionRange = 10f;   
+    [SerializeField] private float wanderRadius = 12f;     
+    [SerializeField] private float wanderInterval = 4f;    
+
     private NavMeshAgent agent;
     private Transform target;
     private EnemyCombat enemyCombat;
-    private EnemyState currentState = EnemyState.Idle;
+    private EnemyState currentState = EnemyState.Wandering;
+
+    private Vector3 startPosition;
+    private float wanderTimer;
 
     private void Awake()
     {
@@ -34,6 +42,7 @@ public class EnemyControllerLocal : MonoBehaviour
             return;
         }
 
+        startPosition = transform.position;
         agent.speed = enemyStats.moveSpeed;
         agent.stoppingDistance = enemyStats.attackRange;
 
@@ -41,6 +50,8 @@ public class EnemyControllerLocal : MonoBehaviour
         {
             enemyCombat.Initialise(enemyStats);
         }
+
+        wanderTimer = wanderInterval; 
     }
 
     private void Update()
@@ -48,24 +59,29 @@ public class EnemyControllerLocal : MonoBehaviour
         if (currentState == EnemyState.Dead)
             return;
 
+
         if (target == null)
         {
-            currentState = EnemyState.Idle;
+            Wander();
             return;
         }
 
-        float distance = Vector3.Distance(transform.position,target.position);
+        float distance = Vector3.Distance(transform.position, target.position);
 
         if (distance <= enemyStats.attackRange)
         {
-            StopMoving();
             currentState = EnemyState.Attacking;
-            UpdateAttacking();
+            Attack();
+        }
+        else if (distance <= detectionRange)
+        {
+            currentState = EnemyState.Chasing;
+            Chase();
         }
         else
         {
-            currentState = EnemyState.Chasing;
-            ChaseTarget();
+            currentState = EnemyState.Wandering;
+            Wander();
         }
     }
 
@@ -74,38 +90,49 @@ public class EnemyControllerLocal : MonoBehaviour
         target = targetPlayer;
     }
 
-    private void ChaseTarget()
+    private void Wander()
     {
-        if (target == null || agent == null)
+
+        wanderTimer += Time.deltaTime;
+
+        if (wanderTimer < wanderInterval)
             return;
 
+        wanderTimer = 0f;
+
+        Vector2 randomOffset = Random.insideUnitCircle * wanderRadius;
+        Vector3 randomPoint = startPosition + new Vector3(randomOffset.x, 0f, randomOffset.y);
+
+
+        if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 5f, NavMesh.AllAreas))
+        {
+            agent.isStopped = false;
+            agent.SetDestination(hit.position);
+        }
+    }
+
+    private void Chase()
+    {
         agent.isStopped = false;
         agent.SetDestination(target.position);
     }
 
-    private void StopMoving()
+    private void Attack()
     {
-        if (agent == null)
-            return;
-
         agent.isStopped = true;
-        agent.ResetPath();
-    }
 
-    public void UpdateAttacking()
-    {
-        if (target == null || enemyCombat == null)
-            return;
 
-        float distance = Vector3.Distance(transform.position,target.position);
-
-        if (distance > enemyStats.attackRange)
+        Vector3 direction = target.position - transform.position;
+        direction.y = 0f;
+        if (direction != Vector3.zero)
         {
-            currentState = EnemyState.Chasing;
-            return;
+            transform.rotation = Quaternion.LookRotation(direction);
         }
 
-        enemyCombat.TryAttack(target);
+        if (enemyCombat != null)
+        {
+            enemyCombat.TryAttack(target);
+        }
     }
 
     public void Die()
@@ -114,8 +141,8 @@ public class EnemyControllerLocal : MonoBehaviour
             return;
 
         currentState = EnemyState.Dead;
-
-        StopMoving();
+        agent.isStopped = true;
+        agent.ResetPath();
 
         //Destroy(gameObject);
     }

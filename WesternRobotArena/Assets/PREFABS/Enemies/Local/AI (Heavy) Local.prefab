@@ -170,6 +170,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyControllerLocal
   enemyStats: {fileID: 11400000, guid: c98302050860d304aa89b520613a7ca2, type: 2}
+  detectionRange: 20
+  wanderRadius: 200
+  wanderInterval: 4
 --- !u!114 &-6720727321077563613
 MonoBehaviour:
   m_ObjectHideFlags: 0

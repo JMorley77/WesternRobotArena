@@ -15,7 +15,7 @@ MonoBehaviour:
   AIName: Heavy
   prefab: {fileID: 7614365539049271289, guid: 5e4b9715db9739a46920176e140d7608, type: 3}
   maxHealth: 100
-  moveSpeed: 5
+  moveSpeed: 4
   attackDamage: 2
   attackRange: 5
   attackCooldown: 1
