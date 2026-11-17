@@ -92,7 +92,7 @@ public class LocalPlayerShooter : MonoBehaviour
             else
             {
                 audioSource.PlayOneShot(emptyMagSound);
-
+                animation.Shoot(false);
                 nextFireTime = Time.time + 1f / fireRate;
             }
 
