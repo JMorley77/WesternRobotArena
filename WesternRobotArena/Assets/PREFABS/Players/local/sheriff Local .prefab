@@ -3974,6 +3974,9 @@ MonoBehaviour:
   playerAnimation: {fileID: -3494378057051362096}
   hitSound: {fileID: 8300000, guid: 69afddc128a5d1d48ab21b21f9e4e26d, type: 3}
   deathSound: {fileID: 8300000, guid: 3c9ce4e16cab5794498d4a372a51fff0, type: 3}
+  damagePopupPrefab: {fileID: 2766385021428739691, guid: a5449718d6ef67747bef9ca857fb1221, type: 3}
+  popupOffset: {x: 2, y: 6, z: 0}
+  popupLifetime: 0.8
 --- !u!114 &-3494378057051362096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4082,11 +4085,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b46e66ba8b4568143b9eae73e15ea922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocalPlayerShooter
-  bulletPrefab: {fileID: 3742496411736017564, guid: 6a53a81731125ec4ea4aa0cf10e2e851, type: 3}
+  bulletPrefab: {fileID: 4919738011060378747, guid: 8c8a780503c51d7479a702631df3017f, type: 3}
   gun: {fileID: 7324513186047507015}
   fireRate: 5
   magSize: 10
-  currentAmmo: 5
+  currentAmmo: 10
   playerAnimation: {fileID: -3494378057051362096}
   rifleShootSound: {fileID: 8300000, guid: e183f79f902bdd04191a48e539fbd100, type: 3}
   reloadSound: {fileID: 8300000, guid: 2feeea9db02aa1e4592955d2bb4b6a46, type: 3}

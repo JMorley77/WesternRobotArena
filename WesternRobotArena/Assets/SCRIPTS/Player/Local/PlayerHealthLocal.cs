@@ -17,6 +17,11 @@ public class PlayerHealthLocal : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     private AudioSource audioSource;
 
+    [Header("Damage Popup")]
+    [SerializeField] private GameObject damagePopupPrefab;
+    [SerializeField] private Vector3 popupOffset = new Vector3(5f, 10f, 0f);
+    [SerializeField] private float popupLifetime = 0.8f;
+
     private bool isDead = false;
 
     public float CurrentHealth => currentHealth;
@@ -60,7 +65,9 @@ public class PlayerHealthLocal : MonoBehaviour
 
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0f);
-        
+
+        ShowDamagePopup(damage);
+
         audioSource.PlayOneShot(hitSound);
         Debug.Log(gameObject.name + " Health: " + currentHealth);
 
@@ -107,5 +114,33 @@ public class PlayerHealthLocal : MonoBehaviour
         invincibilityTimer = duration;
 
         Debug.Log(gameObject.name + " is now invincible for " + duration + " seconds!");
+    }
+
+    private void ShowDamagePopup(float damage)
+    {
+        if (damagePopupPrefab == null) return;
+
+        // Small random sideways offset so rapid hits don't stack exactly on top of each other
+        Vector3 randomOffset = new Vector3(UnityEngine.Random.Range(-0.5f, 0.5f), 0f, 0f);
+
+        Quaternion rot = Camera.main != null
+            ? Camera.main.transform.rotation
+            : Quaternion.identity;
+
+        GameObject popup = Instantiate(
+            damagePopupPrefab,
+            transform.position + popupOffset + randomOffset,
+            rot
+        );
+
+        TMP_Text popupText = popup.GetComponentInChildren<TMP_Text>();
+
+        if (popupText != null)
+        {
+            popupText.text = damage.ToString("0");
+            popupText.color = Color.red;
+        }
+
+        Destroy(popup, popupLifetime);
     }
 }
