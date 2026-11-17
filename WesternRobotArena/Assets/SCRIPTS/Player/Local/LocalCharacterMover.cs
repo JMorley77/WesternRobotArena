@@ -68,6 +68,7 @@ public class LocalCharacterMover : MonoBehaviour
 
         playerAnimation.SetMovement(direction, forward, movementAmount);
 
+
         // Aiming
         if (input.UsingKeyboardMouse) RotateTowardMouse();
         else RotateTowardControllerAim();

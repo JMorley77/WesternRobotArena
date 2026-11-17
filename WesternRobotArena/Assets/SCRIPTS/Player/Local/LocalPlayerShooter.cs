@@ -6,6 +6,7 @@ public class LocalPlayerShooter : MonoBehaviour
 {
     private LocalInputHandler input;
     private LocalWeaponManager weaponManager;
+    private PlayerAnimation animation;
 
     [SerializeField]
     private GameObject bulletPrefab;
@@ -40,6 +41,7 @@ public class LocalPlayerShooter : MonoBehaviour
         input = GetComponent<LocalInputHandler>();
         weaponManager = GetComponent<LocalWeaponManager>();
         audioSource = GetComponent<AudioSource>();
+        animation = GetComponent<PlayerAnimation>();
     }
 
     private void Update()
@@ -61,6 +63,9 @@ public class LocalPlayerShooter : MonoBehaviour
                 isReloading = true;
                 reloadTimer = Time.time + reloadSound.length;
                 audioSource.PlayOneShot(reloadSound);
+                animation.Shoot(false);
+                animation.Reload();
+
             }
             return;
         }
