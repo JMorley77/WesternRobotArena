@@ -4311,6 +4311,9 @@ MonoBehaviour:
   rotateSpeed: 900
   walkRatio: 0.6
   clipNaturalSpeed: 8
+  currentStamina: 0
+  maxStamina: 0
+  staminaRegenRate: 2
 --- !u!114 &-3181114217335172060
 MonoBehaviour:
   m_ObjectHideFlags: 0

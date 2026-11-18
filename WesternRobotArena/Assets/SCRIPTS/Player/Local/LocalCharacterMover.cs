@@ -15,13 +15,17 @@ public class LocalCharacterMover : MonoBehaviour
     [SerializeField, Range(0.1f, 1f)] private float walkRatio = 0.5f;
     [SerializeField] private float clipNaturalSpeed = 4.5f;
 
-
+    [SerializeField] private int currentStamina;
+    [SerializeField] private int maxStamina;
+    [SerializeField] private int staminaRegenRate = 2;
 
     private Camera cam;
 
     private void Awake()
     {
         input = GetComponent<LocalInputHandler>();
+        maxStamina = 500;
+        currentStamina = maxStamina;
     }
 
     private void Update()
@@ -40,6 +44,25 @@ public class LocalCharacterMover : MonoBehaviour
         bool running =
             (Keyboard.current != null && Keyboard.current.leftShiftKey.isPressed) ||
             (Gamepad.current != null && Gamepad.current.leftStickButton.isPressed);
+
+        if (running)
+        {
+            if (currentStamina > 0)
+            {
+                currentStamina--;
+            }
+            else
+            {
+                running = false;
+            }
+        }
+        else
+        {
+            if (currentStamina < maxStamina)
+            {
+                currentStamina += staminaRegenRate;
+            }
+        }
 
         float speedRatio = running ? 1f : walkRatio;
 
