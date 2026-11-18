@@ -968,6 +968,17 @@
                 },
                 {
                     "name": "",
+                    "id": "0c230bd6-663b-4254-b272-cae3888b3ac5",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad;Keyboard&Mouse",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "38c99815-14ea-4617-8627-164d27641299",
                     "path": "<Mouse>/scroll",
                     "interactions": "",
