@@ -1,9 +1,11 @@
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 
 public class SlashEffect : MonoBehaviour
 {
     [SerializeField] private TrailRenderer slashTrail;
+    //[SerializeField] private Shader slashEffect;
     [SerializeField] private float slashDuration = 0.2f;
 
 
