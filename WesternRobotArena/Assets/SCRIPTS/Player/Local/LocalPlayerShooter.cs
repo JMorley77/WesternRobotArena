@@ -12,6 +12,9 @@ public class LocalPlayerShooter : MonoBehaviour
     private GameObject bulletPrefab;
 
     [SerializeField]
+    private GameObject ammoIndicator;
+
+    [SerializeField]
     private Transform gun;
 
     [SerializeField]
@@ -84,6 +87,7 @@ public class LocalPlayerShooter : MonoBehaviour
                 // Delay the shooting to sync with the animation
                 Invoke(nameof(Shoot), 0.3f);
                 //Shoot();
+                ammoIndicator.SetActive(false);
 
                 currentAmmo--;
 
@@ -93,6 +97,7 @@ public class LocalPlayerShooter : MonoBehaviour
             {
                 audioSource.PlayOneShot(emptyMagSound);
                 animation.Shoot(false);
+                ammoIndicator.SetActive(true);
                 nextFireTime = Time.time + 1f / fireRate;
             }
 
