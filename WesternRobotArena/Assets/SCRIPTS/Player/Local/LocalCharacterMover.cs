@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,6 +19,7 @@ public class LocalCharacterMover : MonoBehaviour
     [SerializeField] private int currentStamina;
     [SerializeField] private int maxStamina;
     [SerializeField] private int staminaRegenRate = 2;
+    [SerializeField] private GameObject[] staminaBars;
 
     private Camera cam;
 
@@ -64,6 +66,54 @@ public class LocalCharacterMover : MonoBehaviour
             }
         }
 
+        if (currentStamina >= 500)
+        {
+            staminaBars[0].SetActive(true);
+            staminaBars[1].SetActive(true);
+            staminaBars[2].SetActive(true);
+            staminaBars[3].SetActive(true);
+            staminaBars[4].SetActive(true);
+        }
+        else if (currentStamina >= 400)
+        {
+            staminaBars[0].SetActive(true);
+            staminaBars[1].SetActive(true);
+            staminaBars[2].SetActive(true);
+            staminaBars[3].SetActive(true);
+            staminaBars[4].SetActive(false);
+        }
+        else if (currentStamina >= 300)
+        {
+            staminaBars[0].SetActive(true);
+            staminaBars[1].SetActive(true);
+            staminaBars[2].SetActive(true);
+            staminaBars[3].SetActive(false);
+            staminaBars[4].SetActive(false);
+        }
+        else if (currentStamina >= 200)
+        {
+            staminaBars[0].SetActive(true);
+            staminaBars[1].SetActive(true);
+            staminaBars[2].SetActive(false);
+            staminaBars[3].SetActive(false);
+            staminaBars[4].SetActive(false);
+        }
+        else if (currentStamina >= 100)
+        {
+            staminaBars[0].SetActive(true);
+            staminaBars[1].SetActive(false);
+            staminaBars[2].SetActive(false);
+            staminaBars[3].SetActive(false);
+            staminaBars[4].SetActive(false);
+        }
+        else
+        {
+            staminaBars[0].SetActive(false);
+            staminaBars[1].SetActive(false);
+            staminaBars[2].SetActive(false);
+            staminaBars[3].SetActive(false);
+            staminaBars[4].SetActive(false);
+        }
         float speedRatio = running ? 1f : walkRatio;
 
 
