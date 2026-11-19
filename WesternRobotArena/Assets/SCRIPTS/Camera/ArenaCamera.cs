@@ -4,9 +4,6 @@ using UnityEngine;
 public class ArenaCamera : MonoBehaviour
 {
     [SerializeField]
-    private float cameraDistance = 20f;
-
-    [SerializeField]
     private float minZoom = 6f;
 
     [SerializeField]
@@ -15,10 +12,14 @@ public class ArenaCamera : MonoBehaviour
     [SerializeField]
     private float smoothTime = 0.2f;
 
+
+    [SerializeField]
+    private float rotationSmoothTime = 5f;
+
+
     private Camera cam;
     private List<Transform> players = new List<Transform>();
 
-    private Vector3 cameraVelocity;
     private float zoomVelocity;
 
     private void Awake()
@@ -29,14 +30,14 @@ public class ArenaCamera : MonoBehaviour
 
     private void LateUpdate()
     {
-        players.RemoveAll(player => player == null); //removes destroyed player references
+        players.RemoveAll(player => player == null); // removes destroyed player references
 
         if (players.Count == 0)
             return;
 
-        var targetPosition = GetTargetPosition();
+        Vector3 targetPosition = GetTargetPosition();
 
-        MoveCamera(targetPosition);
+        RotateCamera(targetPosition);
         ZoomCamera();
     }
 
@@ -55,7 +56,7 @@ public class ArenaCamera : MonoBehaviour
         players.Remove(player);
     }
 
-    private Vector3 GetTargetPosition() //gets the middle point between both players
+    private Vector3 GetTargetPosition() // gets the middle point between both players
     {
         if (players.Count == 1)
             return players[0].position;
@@ -63,12 +64,19 @@ public class ArenaCamera : MonoBehaviour
         return (players[0].position + players[1].position) / 2;
     }
 
-    private void MoveCamera(Vector3 target)
+    private void RotateCamera(Vector3 target)
     {
-        var cameraOffset = -transform.forward * cameraDistance;
-        var targetPosition = target + cameraOffset;
+        // calculate the direction from the camera to the players midpoint
+        Vector3 direction = target - transform.position;
 
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref cameraVelocity, smoothTime);
+        if (direction.sqrMagnitude < 0.001f)
+            return;
+
+        // calculate the rotation required to look at the midpoint
+        Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+
+        // smoothly rotate towards the target
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSmoothTime * Time.deltaTime);
     }
 
     private void ZoomCamera()
