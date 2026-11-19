@@ -422,6 +422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenuUI
   pauseMenuPanel: {fileID: 1252902103}
+  virtualMouse: {fileID: 781936913}
   mainMenuSceneName: MainMenu
 --- !u!1 &165500843
 GameObject:

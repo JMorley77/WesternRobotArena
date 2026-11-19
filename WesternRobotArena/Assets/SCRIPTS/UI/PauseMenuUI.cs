@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenuUI : MonoBehaviour
 {
     public GameObject pauseMenuPanel;
+    public GameObject virtualMouse;
     public string mainMenuSceneName = "MainMenu";
 
     private LocalInputHandler[] inputHandlers;
@@ -13,6 +14,7 @@ public class PauseMenuUI : MonoBehaviour
     void Start()
     {
         pauseMenuPanel.SetActive(false);
+        virtualMouse.SetActive(false);
         Time.timeScale = 1;
         isPaused = false;
     }
@@ -42,6 +44,7 @@ public class PauseMenuUI : MonoBehaviour
     public void PauseGame()
     {
         pauseMenuPanel.SetActive(true);
+        virtualMouse.SetActive(true);
         Time.timeScale = 0;
         isPaused = true;
     }
@@ -49,6 +52,7 @@ public class PauseMenuUI : MonoBehaviour
     public void ResumeGame()
     {
         pauseMenuPanel.SetActive(false);
+        virtualMouse.SetActive(false);
         Time.timeScale = 1;
         isPaused = false;
     }
