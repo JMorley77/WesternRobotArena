@@ -17,7 +17,7 @@ MonoBehaviour:
   maxHealth: 100
   moveSpeed: 4
   attackDamage: 2
-  attackRange: 5
+  attackRange: 10
   attackCooldown: 1
   rewardValue: 2
   spawnRate: 15

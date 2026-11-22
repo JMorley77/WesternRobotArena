@@ -173,6 +173,7 @@ MonoBehaviour:
   detectionRange: 20
   wanderRadius: 200
   wanderInterval: 4
+  animator: {fileID: 8463690806121432309}
 --- !u!114 &-6720727321077563613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +296,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6730275204157639548}
     m_Modifications:
+    - target: {fileID: 890226476389730111, guid: 802f2ba785fe0f342874b20c31846a13, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 760b00b63c7a97a4a8606bbb19a13d0b, type: 2}
     - target: {fileID: 3096843698302219960, guid: 802f2ba785fe0f342874b20c31846a13, type: 3}
       propertyPath: m_Name
       value: 'Bear '
@@ -359,5 +364,10 @@ PrefabInstance:
 --- !u!4 &1033179176020843580 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8608981766890168310, guid: 802f2ba785fe0f342874b20c31846a13, type: 3}
+  m_PrefabInstance: {fileID: 8732384782001898442}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8463690806121432309 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 890226476389730111, guid: 802f2ba785fe0f342874b20c31846a13, type: 3}
   m_PrefabInstance: {fileID: 8732384782001898442}
   m_PrefabAsset: {fileID: 0}
