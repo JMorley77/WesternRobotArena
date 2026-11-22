@@ -173,6 +173,7 @@ MonoBehaviour:
   detectionRange: 30
   wanderRadius: 200
   wanderInterval: 4
+  animator: {fileID: 479995307455601656}
 --- !u!114 &-727611723200096874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +296,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6730275204157639548}
     m_Modifications:
+    - target: {fileID: 1577522975292095285, guid: 26098424da880934d8558afc1448e11e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: af33b52614c64d04e8ac88d3cac8340d, type: 2}
     - target: {fileID: 3698532033308685604, guid: 26098424da880934d8558afc1448e11e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -339,6 +344,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Wolf '
       objectReference: {fileID: 0}
+    - target: {fileID: 5954918123567531678, guid: 26098424da880934d8558afc1448e11e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: af33b52614c64d04e8ac88d3cac8340d, type: 2}
+    - target: {fileID: 6721872538673150593, guid: 26098424da880934d8558afc1448e11e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: af33b52614c64d04e8ac88d3cac8340d, type: 2}
+    - target: {fileID: 7110981370241084759, guid: 26098424da880934d8558afc1448e11e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: af33b52614c64d04e8ac88d3cac8340d, type: 2}
+    - target: {fileID: 7184388400565155124, guid: 26098424da880934d8558afc1448e11e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: af33b52614c64d04e8ac88d3cac8340d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4508836741120336292, guid: 26098424da880934d8558afc1448e11e, type: 3}
@@ -346,6 +367,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26098424da880934d8558afc1448e11e, type: 3}
+--- !u!95 &479995307455601656 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1203059443015091039, guid: 26098424da880934d8558afc1448e11e, type: 3}
+  m_PrefabInstance: {fileID: 1592982342365272231}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2686602004614262147 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3698532033308685604, guid: 26098424da880934d8558afc1448e11e, type: 3}

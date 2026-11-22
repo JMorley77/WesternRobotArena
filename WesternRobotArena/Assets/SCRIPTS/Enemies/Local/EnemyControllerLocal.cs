@@ -17,8 +17,9 @@ public class EnemyControllerLocal : MonoBehaviour
     [Header("Behaviour")]
     [SerializeField] private float detectionRange = 10f;   
     [SerializeField] private float wanderRadius = 12f;     
-    [SerializeField] private float wanderInterval = 4f;    
+    [SerializeField] private float wanderInterval = 4f;
 
+    public Animator animator;
     private NavMeshAgent agent;
     private Transform target;
     private EnemyCombat enemyCombat;
@@ -92,33 +93,36 @@ public class EnemyControllerLocal : MonoBehaviour
 
     private void Wander()
     {
-
         wanderTimer += Time.deltaTime;
 
-        if (wanderTimer < wanderInterval)
-            return;
-
-        wanderTimer = 0f;
-
-        Vector2 randomOffset = Random.insideUnitCircle * wanderRadius;
-        Vector3 randomPoint = startPosition + new Vector3(randomOffset.x, 0f, randomOffset.y);
-
-
-        if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 5f, NavMesh.AllAreas))
+        if (wanderTimer >= wanderInterval)
         {
-            agent.isStopped = false;
-            agent.SetDestination(hit.position);
+            wanderTimer = 0f;
+
+            Vector2 randomOffset = Random.insideUnitCircle * wanderRadius;
+            Vector3 randomPoint = startPosition + new Vector3(randomOffset.x, 0f, randomOffset.y);
+
+            if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 5f, NavMesh.AllAreas))
+            {
+                agent.isStopped = false;
+                agent.SetDestination(hit.position);
+            }
         }
+
+        animator.SetBool("Walking", agent.velocity.magnitude > 0.1f);
     }
 
     private void Chase()
     {
+        animator.SetBool("Walking", true);
         agent.isStopped = false;
         agent.SetDestination(target.position);
     }
 
     private void Attack()
     {
+        animator.SetBool("Walking", false);
+        animator.SetTrigger("Attack");
         agent.isStopped = true;
 
 
