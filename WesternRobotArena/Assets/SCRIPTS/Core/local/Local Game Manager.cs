@@ -25,6 +25,10 @@ public class LocalGameManager : MonoBehaviour
     [Header("Camera Settings")]
     [SerializeField] private Camera mainCamera;
 
+    [Header("Health Bar UI")]
+    [SerializeField] private HealthBarUI sheriffHB;
+    [SerializeField] private HealthBarUI outlawHB;
+
     [Header("Game State")]
     [SerializeField]
     private GameState state = GameState.WaitingForPlayers;
@@ -119,7 +123,19 @@ public class LocalGameManager : MonoBehaviour
             spawnedPlayers[i] = player;
             player.GetComponent<PlayerRespawn>().SetSpawnPoint(spawnPoint);
 
-            player.tag = i == 0 ? "TeamRed" : "TeamBlue";
+            // Connect the spawned players health to there UI
+            PlayerHealthLocal playerHealth = player.GetComponent<PlayerHealthLocal>();
+
+            if (i == 0)
+            {
+                sheriffHB.SetPlayer(playerHealth);
+            }
+            else
+            {
+                outlawHB.SetPlayer(playerHealth);
+            }
+
+            player.tag = i == 0 ? "TeamBlue" : "TeamRed";
 
             arenaCamera.AddPlayer(player.transform); //tells camera which players have spawned
 
