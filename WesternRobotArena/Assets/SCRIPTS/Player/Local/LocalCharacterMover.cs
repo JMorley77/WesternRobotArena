@@ -19,7 +19,11 @@ public class LocalCharacterMover : MonoBehaviour
     [SerializeField] private int currentStamina;
     [SerializeField] private int maxStamina;
     [SerializeField] private int staminaRegenRate = 2;
-    [SerializeField] private GameObject[] staminaBars;
+
+    public float CurrentStamina => currentStamina;
+    public float MaxStamina => maxStamina;
+
+    //[SerializeField] private GameObject[] staminaBars;
 
     private Camera cam;
 
@@ -43,9 +47,9 @@ public class LocalCharacterMover : MonoBehaviour
         Vector3 worldMovement = Quaternion.Euler(0, cam.transform.eulerAngles.y, 0) * targetVector;
 
 
-        bool running =
-            (Keyboard.current != null && Keyboard.current.leftShiftKey.isPressed) ||
-            (Gamepad.current != null && Gamepad.current.leftStickButton.isPressed);
+        bool running = input.SprintHeld;
+            /*(Keyboard.current != null && Keyboard.current.leftShiftKey.isPressed) ||
+            (Gamepad.current != null && Gamepad.current.leftStickButton.isPressed);*/
 
         if (running)
         {
@@ -66,7 +70,7 @@ public class LocalCharacterMover : MonoBehaviour
             }
         }
 
-        if (currentStamina >= 500)
+       /* if (currentStamina >= 500)
         {
             staminaBars[0].SetActive(true);
             staminaBars[1].SetActive(true);
@@ -113,7 +117,7 @@ public class LocalCharacterMover : MonoBehaviour
             staminaBars[2].SetActive(false);
             staminaBars[3].SetActive(false);
             staminaBars[4].SetActive(false);
-        }
+        }*/
         float speedRatio = running ? 1f : walkRatio;
 
 

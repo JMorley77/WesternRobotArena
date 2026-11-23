@@ -29,6 +29,10 @@ public class LocalGameManager : MonoBehaviour
     [SerializeField] private HealthBarUI sheriffHB;
     [SerializeField] private HealthBarUI outlawHB;
 
+    [Header("Stamina UI")]
+    [SerializeField] private StaminaBarUI sheriffSB;
+    [SerializeField] private StaminaBarUI outlawSB;
+
     [Header("Game State")]
     [SerializeField]
     private GameState state = GameState.WaitingForPlayers;
@@ -133,6 +137,18 @@ public class LocalGameManager : MonoBehaviour
             else
             {
                 outlawHB.SetPlayer(playerHealth);
+            }
+
+            // Connect the spawned players stamina to there UI
+            LocalCharacterMover playerMover = player.GetComponent<LocalCharacterMover>();
+
+            if (i == 0)
+            {
+                sheriffSB.SetPlayer(playerMover);
+            }
+            else
+            {
+                outlawSB.SetPlayer(playerMover);
             }
 
             player.tag = i == 0 ? "TeamBlue" : "TeamRed";
