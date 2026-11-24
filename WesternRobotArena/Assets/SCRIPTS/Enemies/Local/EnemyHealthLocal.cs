@@ -73,9 +73,9 @@ public class EnemyHealthLocal : MonoBehaviour
         Debug.Log(enemyStats.AIName + " Enemy Died");
 
         if (targetPlayer == 0)
-            scoreManager.RedPointIncrease(enemyStats.rewardValue);
-        else
             scoreManager.BluePointIncrease(enemyStats.rewardValue);
+        else
+            scoreManager.RedPointIncrease(enemyStats.rewardValue);
 
         Destroy(gameObject, deathSound.length);
     }
