@@ -4572,8 +4572,8 @@ MonoBehaviour:
   ammoIndicator: {fileID: 2141294981532096389}
   gun: {fileID: 7324513186047507015}
   fireRate: 5
-  magSize: 10
-  currentAmmo: 10
+  magSize: 20
+  currentAmmo: 20
   playerAnimation: {fileID: -3494378057051362096}
   rifleShootSound: {fileID: 8300000, guid: e183f79f902bdd04191a48e539fbd100, type: 3}
   reloadSound: {fileID: 8300000, guid: 2feeea9db02aa1e4592955d2bb4b6a46, type: 3}
@@ -4626,7 +4626,7 @@ MonoBehaviour:
   localHealth: {fileID: -1629182071053191200}
   multiplayerHealth: {fileID: 0}
   playerMelee: {fileID: 4912445544512020351}
-  bullet: {fileID: 7520147017046042344, guid: 6a53a81731125ec4ea4aa0cf10e2e851, type: 3}
+  bullet: {fileID: 2107933020575863829, guid: 8c8a780503c51d7479a702631df3017f, type: 3}
 --- !u!114 &8075793672711724784
 MonoBehaviour:
   m_ObjectHideFlags: 0

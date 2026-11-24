@@ -30,7 +30,7 @@ public class LocalCharacterMover : MonoBehaviour
     private void Awake()
     {
         input = GetComponent<LocalInputHandler>();
-        maxStamina = 500;
+        maxStamina = 2000;
         currentStamina = maxStamina;
     }
 
