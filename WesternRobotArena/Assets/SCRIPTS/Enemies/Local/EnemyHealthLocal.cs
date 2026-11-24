@@ -14,10 +14,12 @@ public class EnemyHealthLocal : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     private AudioSource audioSource;
     private EnemyControllerLocal enemyController;
-    private float currentHealth;
+    public float currentHealth;
     private bool isDead;
     private int targetPlayer;
+    private float maxHealth;
     public float CurrentHealth => currentHealth;
+    public float MaxHealth => maxHealth;
     public bool IsDead => isDead;
 
     private void Start()
@@ -28,7 +30,7 @@ public class EnemyHealthLocal : MonoBehaviour
             enabled = false;
             return;
         }
-
+        maxHealth = enemyStats.maxHealth;
         gameManager = FindFirstObjectByType<LocalGameManager>();
         scoreManager = FindFirstObjectByType<ScoreManagerLocal>();
         audioSource = GetComponent<AudioSource>();
@@ -71,9 +73,9 @@ public class EnemyHealthLocal : MonoBehaviour
         Debug.Log(enemyStats.AIName + " Enemy Died");
 
         if (targetPlayer == 0)
-            scoreManager.RedPointIncrease(enemyStats.rewardValue);
-        else
             scoreManager.BluePointIncrease(enemyStats.rewardValue);
+        else
+            scoreManager.RedPointIncrease(enemyStats.rewardValue);
 
         Destroy(gameObject, deathSound.length);
     }

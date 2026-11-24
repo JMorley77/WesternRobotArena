@@ -28792,8 +28792,8 @@ MonoBehaviour:
   gameManager: {fileID: 1785781291}
   redPoints: 0
   bluePoints: 0
-  redScoreText: {fileID: 4789592294951320244}
-  blueScoreText: {fileID: 7524659711466332699}
+  redScoreText: {fileID: 7524659711466332699}
+  blueScoreText: {fileID: 4789592294951320244}
   timerText: {fileID: 3453066177117398289}
   maxPoints: 30
   redWinScene: RedWinScene
