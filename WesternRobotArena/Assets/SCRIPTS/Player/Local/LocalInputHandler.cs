@@ -23,6 +23,8 @@ public class LocalInputHandler : MonoBehaviour
 
     public bool ReloadPressed { get; private set; }
 
+    public bool SprintHeld { get; private set; }
+
     private PlayerInput playerInput;
 
     private InputAction moveAction;
@@ -39,6 +41,8 @@ public class LocalInputHandler : MonoBehaviour
 
     private InputAction reloadAction;
 
+    private InputAction sprintAction;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -51,6 +55,7 @@ public class LocalInputHandler : MonoBehaviour
         interactAction = playerInput.actions["Interact"];
         pauseAction = playerInput.actions["Pause"];
         reloadAction = playerInput.actions["Reload"];
+        sprintAction = playerInput.actions["Sprint"];
     }
 
     private void Update()
@@ -65,6 +70,7 @@ public class LocalInputHandler : MonoBehaviour
         InteractPressed = interactAction.WasPressedThisFrame();
         PausePressed = pauseAction.WasPressedThisFrame();
         ReloadPressed = reloadAction.WasPressedThisFrame();
+        SprintHeld = sprintAction.IsPressed();
 
         UsingKeyboardMouse = playerInput.currentControlScheme == "Keyboard&Mouse";
     }

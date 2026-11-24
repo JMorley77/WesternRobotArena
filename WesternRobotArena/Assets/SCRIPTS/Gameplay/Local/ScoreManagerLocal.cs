@@ -67,10 +67,10 @@ public class ScoreManagerLocal : MonoBehaviour
     private void UpdateScoreUI()
     {
         if (redScoreText != null)
-            redScoreText.text = "RED: " + redPoints;
+            redScoreText.text = redPoints + "";
 
         if (blueScoreText != null)
-            blueScoreText.text = "BLUE: " + bluePoints;
+            blueScoreText.text = bluePoints + "";
     }
 
     #endregion
