@@ -5038,7 +5038,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 497156974}
         m_TargetAssemblyTypeName: MainMenuUI, Assembly-CSharp
-        m_MethodName: PlayLocal
+        m_MethodName: HowToPlay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

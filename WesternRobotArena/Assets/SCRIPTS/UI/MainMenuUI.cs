@@ -15,6 +15,10 @@ public class MainMenuUI : MonoBehaviour
         lobbyPanel.SetActive(true);
     }
 
+    public void HowToPlay()
+    {
+        SceneManager.LoadScene("HowToPlayScreen");
+    }
     public void PlayLocal()
     {
         SceneManager.LoadScene("Local");
