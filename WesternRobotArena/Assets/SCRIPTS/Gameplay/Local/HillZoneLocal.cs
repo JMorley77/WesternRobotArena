@@ -19,6 +19,12 @@ public class HillZoneLocal : MonoBehaviour
 
     private float scoreTimer = 0f;
 
+    private void Start()
+    {
+        scoreManager = FindAnyObjectByType<ScoreManagerLocal>();
+        gameManager = FindAnyObjectByType<LocalGameManager>();
+    }
+
     private void Update()
     {
         if (scoreManager == null || gameManager == null)

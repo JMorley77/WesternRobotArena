@@ -1267,7 +1267,7 @@ MonoBehaviour:
   localHealth: {fileID: -1629182071053191200}
   multiplayerHealth: {fileID: 0}
   playerMelee: {fileID: 4912445544512020351}
-  bullet: {fileID: 0}
+  bullet: {fileID: 2107933020575863829, guid: 8c8a780503c51d7479a702631df3017f, type: 3}
 --- !u!114 &8075793672711724784
 MonoBehaviour:
   m_ObjectHideFlags: 0
