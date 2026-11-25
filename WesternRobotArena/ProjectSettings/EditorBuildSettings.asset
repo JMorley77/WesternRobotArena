@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SCENES/Game/Win Screens/BlueWinScene.unity
     guid: 8de964708f0df7e4ebadc9432920d896
+  - enabled: 1
+    path: Assets/SCENES/Development/James D Stuff/HowToPlayScreen.unity
+    guid: 6ec333080d277ac40b75e358bd9592e7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
